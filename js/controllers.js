@@ -85,3 +85,8 @@ demoControllers.controller('ProfileController', ['$scope', '$http', 'Tasks', '$w
 
 }]);
 
+demoControllers.controller('AddErrandController', ['$scope' , '$window' , function($scope, $window) {
+
+}]);
+
+

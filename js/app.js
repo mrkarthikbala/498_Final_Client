@@ -1,5 +1,3 @@
-// var demoApp = angular.module('demoApp', ['demoControllers']);
-
 var demoApp = angular.module('demoApp', ['ngRoute', 'demoControllers', 'demoServices']);
 
 demoApp.config(['$routeProvider', function($routeProvider) {
@@ -39,6 +37,10 @@ demoApp.config(['$routeProvider', function($routeProvider) {
   when('/profile', {
     templateUrl: 'partials/profile.html',
     controller: 'ProfileController'
+  }).
+  when('/AddErrand', {
+    templateUrl: 'partials/AddErrand.html',
+    controller: 'AddErrandController'
   }).
   otherwise({
     redirectTo: '/settings'
