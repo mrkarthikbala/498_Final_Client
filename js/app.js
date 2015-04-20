@@ -36,6 +36,10 @@ demoApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/taskDetails.html',
     controller: 'TaskDetailController'
   }).
+  when('/profile', {
+    templateUrl: 'partials/profile.html',
+    controller: 'ProfileController'
+  }).
   otherwise({
     redirectTo: '/settings'
   });

@@ -77,3 +77,11 @@ demoControllers.controller('TaskDetailController', ['$scope', '$http', 'Tasks', 
 
 }]);
 
+demoControllers.controller('ProfileController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+
+  // Llamas.get().success(function(data){
+  //   $scope.llamas = data;
+  // });
+
+}]);
+
