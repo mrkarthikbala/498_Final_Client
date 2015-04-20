@@ -59,16 +59,13 @@ demoControllers.controller('LoginController', ['$scope' , '$window' , function($
 
 demoControllers.controller('SignupController', ['$scope' , '$window' , function($scope, $window) {
 
-  //Need to figure out sessions
-  
-  // $scope.url = $window.sessionStorage.baseurl;
-
-  // $scope.setUrl = function(){
-  //   $window.sessionStorage.baseurl = $scope.url; 
-  //   $scope.displayText = "URL set";
-
-  // };
-
 }]);
 
+demoControllers.controller('TasksController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+
+  // Llamas.get().success(function(data){
+  //   $scope.llamas = data;
+  // });
+
+}]);
 
