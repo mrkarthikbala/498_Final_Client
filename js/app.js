@@ -20,6 +20,10 @@ demoApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/llamalist.html',
     controller: 'LlamaListController'
   }).
+  when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'LoginController'
+  }).
   otherwise({
     redirectTo: '/settings'
   });
