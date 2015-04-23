@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Errand</title>
+  <script src="./lib/angular/angular.min.js"></script>
+  <script src="./lib/angular-route/angular-route.min.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/controllers.js"></script>
+  <script src="./js/services.js"></script>
+  <script src="./lib/jquery-2.1.3.min/index.js"></script>
+  <script src="./foundation/js/foundation.min.js"></script>
+
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./foundation/css/foundation.css">
+  
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+
+<body> 
+
+	<div class="row" ng-controller='addErrandController'>		    
+		<h1 style="color: #8B0000" class="text-center"> Add Errand </h1>
+		<hr>
+	</div>
+
+	<form method="POST" data-abide>
+		<div class ="row">
+			<div class="large-12 large-centered columns">
+				<label style="color: #8B0000"> Name <small> Required</small>
+				<input name = "Name" placeholder= "Mow My Lawn" type="text" required/>
+			</div>
+		</div>
+		
+		<div class ="row">
+			<div class="large-12 large-centered columns">
+		 		<label style="color: #8B0000">Description<small> Required</small>
+	  			<input name ="Description" type="text" placeholder="20 acre lawn that requires proper mowing. I will provide the appropriate equiptment" required/>
+	  		</div>
+		</div>
+
+		<div class="row">
+			<div class="large-12 large-centered text-center columns">
+				<input class="button alert tiny round" type="submit" name="submit" value="Submit">
+			</div>
+		</div>
+		</form>
+
+</body>
+</html>
+
+
+	 	  	
+	    
+
+
+
+
+
+
