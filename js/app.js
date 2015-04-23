@@ -4,31 +4,31 @@ errandApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
   when('/settings', {
     templateUrl: 'partials/settings.html',
-    controller: 'SettingsController'
+    controller: 'settingsController'
   }).
   when('/login', {
     templateUrl: 'partials/login.html',
-    controller: 'LoginController'
+    controller: 'loginController'
   }).
   when('/signup', {
     templateUrl: 'partials/signup.html',
-    controller: 'SignupController'
+    controller: 'signupController'
   }).
-  when('/tasks', {
-    templateUrl: 'partials/tasks.html',
-    controller: 'ErrandsController'
+  when('/errands', {
+    templateUrl: 'partials/errands.html',
+    controller: 'errandsController'
   }).
-  when('/tasks/:taskID', {
-    templateUrl: 'partials/taskDetails.html',
-    controller: 'TaskDetailController'
+  when('/errands/:errandID', {
+    templateUrl: 'partials/errandDetails.html',
+    controller: 'errandDetailController'
   }).
   when('/profile', {
     templateUrl: 'partials/profile.html',
-    controller: 'ProfileController'
+    controller: 'profileController'
   }).
-  when('/AddErrand', {
-    templateUrl: 'partials/AddErrand.html',
-    controller: 'AddErrandController'
+  when('/addErrand', {
+    templateUrl: 'partials/addErrand.html',
+    controller: 'addErrandController'
   }).
   otherwise({
     redirectTo: '/settings'

@@ -1,6 +1,6 @@
 var errandControllers = angular.module('errandControllers', []);
 
-errandControllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('settingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
   $scope.setUrl = function(){
@@ -11,7 +11,7 @@ errandControllers.controller('SettingsController', ['$scope' , '$window' , funct
 
 }]);
 
-errandControllers.controller('LoginController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('loginController', ['$scope' , '$window' , function($scope, $window) {
 
   //Need to figure out sessions
   
@@ -25,11 +25,11 @@ errandControllers.controller('LoginController', ['$scope' , '$window' , function
 
 }]);
 
-errandControllers.controller('SignupController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('signupController', ['$scope' , '$window' , function($scope, $window) {
 
 }]);
 
-errandControllers.controller('ErrandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
+errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
 
   Errands.getErrands("").success(function(data){
     $scope.errands = data.data;
@@ -37,7 +37,7 @@ errandControllers.controller('ErrandsController', ['$scope', '$http', 'Errands',
 
 }]);
 
-errandControllers.controller('TaskDetailController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+errandControllers.controller('errandDetailController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http, Errands, $window) {
 
   // Llamas.get().success(function(data){
   //   $scope.llamas = data;
@@ -45,7 +45,7 @@ errandControllers.controller('TaskDetailController', ['$scope', '$http', 'Tasks'
 
 }]);
 
-errandControllers.controller('ProfileController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+errandControllers.controller('profileController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
 
   // Llamas.get().success(function(data){
   //   $scope.llamas = data;
@@ -53,7 +53,7 @@ errandControllers.controller('ProfileController', ['$scope', '$http', 'Tasks', '
 
 }]);
 
-errandControllers.controller('AddErrandController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('addErrandController', ['$scope' , '$window' , function($scope, $window) {
 
 }]);
 
