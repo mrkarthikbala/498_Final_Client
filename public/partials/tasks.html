@@ -20,7 +20,7 @@
 
 <body> 
 
-	<div class="row" ng-controller='TasksController'>		
+	<div class="row" ng-controller='ErrandsController'>		
 		<h1 style="color: #8B0000" class="text-center"> Errands </h1>
 		<hr>
 	    <a  class="button tiny alert" href="#/AddErrand">Add Errand</a>
@@ -63,8 +63,9 @@
           </tr>
           </tfoot> -->
           <tbody>
-            <tr ng-repeat="task in tasks | orderBy:predicate:reverse">
+            <tr ng-repeat="errand in errands | orderBy:predicate:reverse">
               <!-- Waiting for Schema -->
+              <td>{{errand.name}}</td>
             </tr>
             <tr>
               <td><a href="#">Michael Jordan</a></td>

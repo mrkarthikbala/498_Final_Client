@@ -1,6 +1,6 @@
-var demoApp = angular.module('demoApp', ['ngRoute', 'demoControllers', 'demoServices']);
+var errandApp = angular.module('errandApp', ['ngRoute', 'errandControllers', 'errandServices']);
 
-demoApp.config(['$routeProvider', function($routeProvider) {
+errandApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
   when('/settings', {
     templateUrl: 'partials/settings.html',
@@ -16,7 +16,7 @@ demoApp.config(['$routeProvider', function($routeProvider) {
   }).
   when('/tasks', {
     templateUrl: 'partials/tasks.html',
-    controller: 'TasksController'
+    controller: 'ErrandsController'
   }).
   when('/tasks/:taskID', {
     templateUrl: 'partials/taskDetails.html',
