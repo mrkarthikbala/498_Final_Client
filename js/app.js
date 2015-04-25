@@ -22,7 +22,7 @@ errandApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/errandDetails.html',
     controller: 'errandDetailController'
   }).
-  when('/profile', {
+  when('/profile/:usersId', {
     templateUrl: 'partials/profile.html',
     controller: 'profileController'
   }).

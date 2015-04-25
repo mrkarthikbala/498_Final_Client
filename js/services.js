@@ -15,20 +15,20 @@ angular.module('errandServices', [])
         var Users = {};
         Users.getUsers = function(paramString) {
                 return $http.get(baseUrl+'/api/users' + paramString);
-            }
+            };
         Users.postUser = function(user){
 
             return $http.post(baseUrl + '/api/users' ,user);
         };
         Users.getUser = function(id){
                 return $http.get(baseUrl + '/api/users/' + id);
-        }
+        };
         Users.updateUser = function(user){
             return $http.put(baseUrl + '/api/users/' + user._id, user);
-        }
+        };
         Users.deleteUser = function(id){
                 return $http.delete(baseUrl + '/api/users/' + id);
-        }
+        };
         return Users;
         
     })
@@ -38,7 +38,7 @@ angular.module('errandServices', [])
         Errands.getErrands = function(paramString){
             return $http.get(baseUrl + '/api/errands' + paramString);
         }
-        Errands.getErrands = function(id){
+        Errands.getErrand = function(id){
             return $http.get(baseUrl + '/api/errands/' + id);
         };
         Errands.postErrand = function(errand){

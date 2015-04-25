@@ -31,26 +31,28 @@ errandControllers.controller('signupController', ['$scope' , '$window' , functio
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
 
-  Errands.getErrands("").success(function(data){
-    $scope.errands = data.data;
+  Errands.getErrands("").success(function(response){
+    $scope.errands = response.data;
   });
 
 }]);
 
-errandControllers.controller('errandDetailController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http, Errands, $window) {
+errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
+  
+  $scope.ErrandId = $routeParams.errandID;
+  Errands.getErrand($scope.ErrandId).success(function(response){
+    $scope.errands = response.data;
+  });
 
-  // Llamas.get().success(function(data){
-  //   $scope.llamas = data;
-  // });
 
 }]);
 
-errandControllers.controller('profileController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
+errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', '$window' , function($scope, $routeParams, $http,  Users, $window) {
 
-  // Llamas.get().success(function(data){
-  //   $scope.llamas = data;
-  // });
-
+  $scope.UserId = $routeParams.usersId;
+  Users.getUser($scope.UserId).success(function(response){
+    $scope.user = response.data;
+  });
 }]);
 
 errandControllers.controller('addErrandController', ['$scope' , '$window' , function($scope, $window) {
