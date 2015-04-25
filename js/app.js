@@ -1,4 +1,4 @@
-var errandApp = angular.module('errandApp', ['ngRoute', 'errandControllers', 'errandServices']);
+var errandApp = angular.module('errandApp', ['ngRoute', 'errandControllers', 'errandServices', 'timer']);
 
 errandApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.

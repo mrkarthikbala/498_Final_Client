@@ -58,6 +58,7 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
       });
 }]);
 
+
 errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
   
   $scope.ErrandId = $routeParams.errandID;
