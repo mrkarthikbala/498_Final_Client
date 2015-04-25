@@ -63,8 +63,8 @@
               <td><a href="#/errands/{{items._id}}">{{items.name}}</a></td>
               <td>{{items.description}}</td>
               <td>{{items.deadline}}</td>
-              <td>$29.00</td>
-              <td>Charles Barkley</td>
+              <td>{{items.bestBid.bidAmount | currency}}</td>
+              <td>{{items.bestBid.bidderName}}</td>
             </tr>  
           </tbody>
         </table>
