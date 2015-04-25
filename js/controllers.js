@@ -1,38 +1,6 @@
-var demoControllers = angular.module('demoControllers', []);
+var errandControllers = angular.module('errandControllers', []);
 
-demoControllers.controller('FirstController', ['$scope', 'CommonData'  , function($scope, CommonData) {
-  $scope.data = "";
-   $scope.displayText = ""
-
-  $scope.setData = function(){
-    CommonData.setData($scope.data);
-    $scope.displayText = "Data set"
-
-  };
-
-}]);
-
-demoControllers.controller('SecondController', ['$scope', 'CommonData' , function($scope, CommonData) {
-  $scope.data = "";
-
-  $scope.getData = function(){
-    $scope.data = CommonData.getData();
-
-  };
-
-}]);
-
-
-demoControllers.controller('LlamaListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
-
-  Llamas.get().success(function(data){
-    $scope.llamas = data;
-  });
-
-
-}]);
-
-demoControllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('settingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
   $scope.setUrl = function(){
@@ -43,7 +11,7 @@ demoControllers.controller('SettingsController', ['$scope' , '$window' , functio
 
 }]);
 
-demoControllers.controller('LoginController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('loginController', ['$scope' , '$window' , function($scope, $window) {
 
   //Need to figure out sessions
   
@@ -57,35 +25,37 @@ demoControllers.controller('LoginController', ['$scope' , '$window' , function($
 
 }]);
 
-demoControllers.controller('SignupController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('signupController', ['$scope' , '$window' , function($scope, $window) {
 
 }]);
 
-demoControllers.controller('TasksController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
 
-  // Llamas.get().success(function(data){
-  //   $scope.llamas = data;
-  // });
-
-}]);
-
-demoControllers.controller('TaskDetailController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
-
-  // Llamas.get().success(function(data){
-  //   $scope.llamas = data;
-  // });
+  Errands.getErrands("").success(function(response){
+    $scope.errands = response.data;
+  });
 
 }]);
 
-demoControllers.controller('ProfileController', ['$scope', '$http', 'Tasks', '$window' , function($scope, $http,  Tasks, $window) {
+errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
+  
+  $scope.ErrandId = $routeParams.errandID;
+  Errands.getErrand($scope.ErrandId).success(function(response){
+    $scope.errands = response.data;
+  });
 
-  // Llamas.get().success(function(data){
-  //   $scope.llamas = data;
-  // });
 
 }]);
 
-demoControllers.controller('AddErrandController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', '$window' , function($scope, $routeParams, $http,  Users, $window) {
+
+  $scope.UserId = $routeParams.usersId;
+  Users.getUser($scope.UserId).success(function(response){
+    $scope.user = response.data;
+  });
+}]);
+
+errandControllers.controller('addErrandController', ['$scope' , '$window' , function($scope, $window) {
 
 }]);
 

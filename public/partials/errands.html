@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Errands</title>
+  <script src="./lib/angular/angular.min.js"></script>
+  <script src="./lib/angular-route/angular-route.min.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/controllers.js"></script>
+  <script src="./js/services.js"></script>
+  <script src="./lib/jquery-2.1.3.min/index.js"></script>
+  <script src="./foundation/js/foundation.min.js"></script>
+
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./foundation/css/foundation.css">
+  
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+
+<body> 
+
+	<div class="row" ng-controller='errandsController'>		
+		<h1 style="color: #8B0000" class="text-center"> Errands </h1>
+		<hr>
+	    <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
+    </div>
+
+<!-- 	<div class="row">
+      <div class="small-12 columns">
+          <table width="100%">
+            <tbody>
+              <tr ng-repeat="items in tasks">
+                <td><a href="#/Tasks/{{items._id}}">{{items.name}}</a>
+                  <h6>{{items.deadline | date:'medium'}}</h6> 
+                  <h6>Assigned to: {{items.assignedUserName}}</h6>
+                </td>
+                <td class="text-right"> <button class="button round tiny" ng-click="deleteTask(items)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div> -->
+
+  <div class="row">
+    Need A Distance Slider<br/>
+    Need A Keyword Search<br/>
+    <div class="small-12 columns">
+        <table width="100%">
+          <thead>
+            <tr>
+              <th class="text-center"><a href="" ng-click="predicate = 'postedBy'; reverse=!reverse">Posted By</a></th>
+               <th class="text-center"><a href="" ng-click="predicate = 'postedBy'; reverse=!reverse">Name</a></th>
+               <th class="text-center"><a href="" ng-click="predicate = 'errandDesc'; reverse=!reverse">Errand Description</a></th>
+               <th class="text-center"><a href="" ng-click="predicate = 'timeLeft'; reverse=!reverse">Timer</a></th>
+               <th class="text-center"><a href="" ng-click="predicate = 'bestBid'; reverse=!reverse">Current Best Bid</a></th>
+               <th class="text-center"><a href="" ng-click="predicate = 'bestBidder'; reverse=!reverse">Current Best Bidder</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="items in errands | orderBy:predicate:reverse">
+              <td><a href="#/profile/{{items.createdID}}">{{items.createdName}}</a></td>
+              <td><a href="#/errands/{{items._id}}">{{items.name}}</a></td>
+              <td>{{items.description}}</td>
+              <td>{{items.deadline}}</td>
+              <td>$29.00</td>
+              <td>Charles Barkley</td>
+            </tr>  
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+
+	 	  	
+	    
+
+
+
+
+
+
