@@ -29,6 +29,10 @@ angular.module('errandServices', [])
         Users.deleteUser = function(id){
                 return $http.delete(baseUrl + '/api/users/' + id);
         };
+        Users.login = function(user){
+            
+            return $http.post(baseUrl + '/api/login' ,user);
+        };
         return Users;
         
     })

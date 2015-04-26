@@ -11,7 +11,7 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 
 }]);
 
-errandControllers.controller('loginController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , '$http', function($scope, Users, $window, $http ) {
 
   //Need to figure out sessions
   
@@ -22,15 +22,60 @@ errandControllers.controller('loginController', ['$scope' , '$window' , function
   //   $scope.displayText = "URL set";
 
   // };
+  $scope.loginUser = function(){
+     
+      $scope.loginRequest = {
+        email: $scope.email,
+        password: $scope.password
+      }
+     
+      Users.login($scope.loginRequest).success(function(response){
+        console.log(response.message);
+        $window.sessionStorage.loggedIn = true;
+        $window.sessionStorage.userEmail = response.data.email;
+        // console.log(response.data);
+        // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
+        // console.log("userEmail " + $window.sessionStorage.userEmail );
+
+      }).error(function(response){
+        console.log(response.message);
+      });
+
+  };
 
 }]);
 
-errandControllers.controller('signupController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('signupController', ['$scope', 'Users', '$window', function($scope, Users, $window) {
 
-}]);
+$scope.addUsers = function(){
+      
+      $scope.newUser = {
+         name: $scope.name,
+         email: $scope.email,
+         password: $scope.password
+        }
+
+                  console.log($scope.newUser);
+
+
+      if(($scope.email!=undefined) && ($scope.name!=undefined) && ($scope.password!=undefined)) {
+          Users.postUser($scope.newUser).success(function(response) {
+            $scope.email = "";
+            $scope.name = "";
+            $scope.password = "";
+            $scope.message = response.message;
+            $scope.messageToSend = true;
+            $scope.respClass = "success";
+        }).error(function(error){
+            $scope.message = error.message;
+            $scope.messageToSend = true;
+            $scope.respClass = "alert";
+          });
+      }
+}}]);
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
-
+  console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
   Errands.getErrands("").success(function(response){
     $scope.errands = response.data;
     $scope.amount =  []; 
