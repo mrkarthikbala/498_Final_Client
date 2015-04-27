@@ -4,8 +4,7 @@
   <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
   Need A Distance Slider<br/>
   Need A Keyword Search<br/>
-  <!-- <timer interval="1000" countdown="100">{{countdown}}</timer> -->
-  <timer end-time="1430082929000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
+  <timer end-time="1530082929000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
   <div class="small-12 columns">
       <table width="100%">
         <thead>
@@ -23,7 +22,11 @@
             <td><a href="#/profile/{{items.createdID}}">{{items.createdName}}</a></td>
             <td><a href="#/errands/{{items._id}}">{{items.name}}</a></td>
             <td>{{items.description}}</td>
-            <td><timer end-time="1430082929000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></td>
+            <td>
+              <timer end-time="dateToEpoch(items.deadline)">
+                {{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
+              </timer>
+            </td>
             <td>$29.00</td>
             <td>Charles Barkley</td>
           </tr>  

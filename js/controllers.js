@@ -100,7 +100,20 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
       $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
     }
 
-      });
+    $scope.dateToEpoch = function(datestring) {
+      var deadline = new Date(datestring);
+      return deadline.getTime();
+    };
+    // $scope.getEpochTime = function(id) {
+    //   for (var i = 0; i < $scope.errands.length; i++) {
+    //     if ($scope.errands[i]['_id'] == id) {
+    //       var deadline = $scope.errands[i]['deadline'];
+    //       alert(deadline);
+    //       return deadline.getTime();
+    //     }
+    //   }
+    // };
+  });
 }]);
 
 
