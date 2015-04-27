@@ -1,4 +1,7 @@
 # Find out more at http://compass-style.org/help/documentation/configuration-reference/
+
+
+add_import_path "public/foundation/scss"
 css_dir = 'public/css'
 sass_dir = 'sass'
 javascripts_dir = 'js'

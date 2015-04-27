@@ -31,20 +31,20 @@
 	  		<form method="POST" data-abide>
 	    		<div class ="row">
 					<div class="large-12 large-centered columns">
-	      				<label style="color: #8B0000"> Username <small> Required</small>
-	        			<input name = "Username" placeholder= "ranjitahkumar" type="text" required/>
+	      				<label style="color: #8B0000" > Email <small> Required</small>
+	        			<input name = "Email" ng-model="email" placeholder= "ranjitahkumar@gmail.com" type="text" required/>
 	      			</div>
 	   			</div>
 	    		<div class ="row">
 					<div class="large-12 large-centered columns">
 	  			 		<label style="color: #8B0000">Password<small> Required</small>
-	    		  		<input name ="Password" type="text" placeholder="llamas" required/>
+	    		  		<input name ="Password" ng-model="password" type="text" placeholder="llamas" required/>
 	  		  		</div>
 	  			</div>
 
 	  			<div class="row">
   					<div class="large-12 large-centered text-center columns">
-  						<input class="button alert tiny round" type="submit" name="submit" value="Submit">
+  						<input class="button alert tiny round" type="submit" name="submit" value="Submit" ng-click="loginUser()">
   					</div>
   				</div>
   	  		</form>
