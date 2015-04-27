@@ -81,11 +81,9 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
     $scope.amount =  []; 
     
     $scope.getBest = function(errand) {
-
         //MAKE SURE THESE ARE SET CORRECTLY
         $scope.bestBidAmount = 1000000000000000;
         $scope.bestBid;
-
         for(var j=0; j < errand.bids.length; j++) {
           if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
             $scope.bestBidAmount = errand.bids[j].bidAmount;
@@ -95,7 +93,6 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
         return $scope.bestBid;
         //return the actual bids not the amount
     };
-
     for (var i =0; i < $scope.errands.length; i++) {
       $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
     }

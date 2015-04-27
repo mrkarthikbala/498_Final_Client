@@ -4,17 +4,18 @@
   <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
   Need A Distance Slider<br/>
   Need A Keyword Search<br/>
-  <timer end-time="1530082929000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
   <div class="small-12 columns">
       <table width="100%">
+      <div class="small-12 columns">
+      <table id= "myTable" width="100%">
         <thead>
           <tr>
-            <th class="text-center"><a href="" ng-click="predicate = 'postedBy'; reverse=!reverse">Posted By</a></th>
-             <th class="text-center"><a href="" ng-click="predicate = 'postedBy'; reverse=!reverse">Name</a></th>
-             <th class="text-center"><a href="" ng-click="predicate = 'errandDesc'; reverse=!reverse">Errand Description</a></th>
-             <th class="text-center"><a href="" ng-click="predicate = 'timeLeft'; reverse=!reverse">Timer</a></th>
-             <th class="text-center"><a href="" ng-click="predicate = 'bestBid'; reverse=!reverse">Current Best Bid</a></th>
-             <th class="text-center"><a href="" ng-click="predicate = 'bestBidder'; reverse=!reverse">Current Best Bidder</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'createdName'; reverse=!reverse">Posted By</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'name'; reverse=!reverse">Name</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'description'; reverse=!reverse">Errand Description</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'timeLeft'; reverse=!reverse">Timer</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidAmount'; reverse=!reverse">Current Best Bid</a></th>
+             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidderName'; reverse=!reverse">Current Best Bidder</a></th>
           </tr>
         </thead>
         <tbody>
@@ -27,8 +28,8 @@
                 {{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
               </timer>
             </td>
-            <td>$29.00</td>
-            <td>Charles Barkley</td>
+            <td>{{items.bestBid.bidAmount | currency}}</td>
+            <td>{{items.bestBid.bidderName}}</td>
           </tr>  
         </tbody>
       </table>
