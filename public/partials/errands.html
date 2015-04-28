@@ -1,5 +1,5 @@
 <div class="row" ng-controller='errandsController'>		
-	<h1 style="color: #8B0000" class="text-center"> Errands </h1>
+	<h1 class="text-center"> Errands </h1>
 	<hr>
   <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
   Need A Distance Slider<br/>
@@ -29,7 +29,7 @@
               </timer>
             </td>
             <td>{{items.bestBid.bidAmount | currency}}</td>
-            <td>{{items.bestBid.bidderName}}</td>
+            <td><a href="#/profile/{{items.bestBid.bidderID}}">{{items.bestBid.bidderName}}</td>
           </tr>  
         </tbody>
       </table>

@@ -117,6 +117,7 @@ $white       : #FFFFFF;
 // $jet         : #222222;
 $black       : #000000;
 $red:			#8B0000;
+$blue:	#0000FF;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
@@ -202,9 +203,9 @@ $red:			#8B0000;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $blue;
 // $header-line-height: 1.4;
-// $header-top-margin: .2rem;
+$header-top-margin: .8rem;
 // $header-bottom-margin: .5rem;
 // $header-text-rendering: optimizeLegibility;
 
@@ -233,7 +234,7 @@ $red:			#8B0000;
 
 // A general <small> styling
 // $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+$small-font-color: scale-color($red, $lightness: 35%);
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
@@ -453,7 +454,7 @@ $red:			#8B0000;
 // We use these to control button border styles.
 // $button-border-width: 0;
 // $button-border-style: solid;
-// $button-bg-color: $primary-color;
+$button-bg-color: $red;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
 // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
@@ -627,10 +628,10 @@ $red:			#8B0000;
 
 // We use these to style the labels in different ways
 // $form-label-pointer: pointer;
-// $form-label-font-size: rem-calc(14);
+$form-label-font-size: rem-calc(14);
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
-// $form-label-font-color: scale-color($black, $lightness: 30%);
+$form-label-font-color: scale-color($blue, $lightness: 30%);
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
@@ -1395,15 +1396,15 @@ $topbar-bg-color: $red;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $white;
-$topbar-link-color-hover: $black;
+$topbar-link-color-hover: $blue;
 // $topbar-link-color-active: $white;
 // $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;
-$topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(15);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-hover: $oil;
-// $topbar-link-bg-color-hover: $charcoal;
+$topbar-link-bg-hover: $red;
+$topbar-link-bg-color-hover: $blue;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;

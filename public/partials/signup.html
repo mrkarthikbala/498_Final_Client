@@ -21,7 +21,7 @@
 <body> 
 
 	<div class="row" ng-controller='signupController'>		    
-		<h1 style="color: #8B0000" class="text-center"> Sign Up </h1>
+		<h1 class="text-center"> Sign Up </h1>
 		<hr>
 	</div>
 
@@ -30,27 +30,20 @@
 	  	<tr>
 	  		<form method="POST" data-abide>
 	  			<div class ="row">
-					<div class="large-12 large-centered columns">
-	      				<label style="color: #8B0000"> Name <small> Required</small>
+					<div class="small-8 small-centered columns">
+	      				<label> Name <small id="smal"> Required</small>
 	        			<input name = "Username" ng-model="name" placeholder= "Ranjitah Kumar" type="text" required/>
 	      			</div>
-	   			</div>
-	  			<div class ="row">
-					<div class="large-12 large-centered columns">
-	      				<label style="color: #8B0000"> Email <small> Required</small>
+					<div class="small-8 small-centered columns">
+	      				<label> Email <small id="smal"> Required</small>
 	        			<input name = "Email" ng-model="email" placeholder= "uiucwp@gmail.com" type="text" required/>
 	      			</div>
-	   			</div>
-
-	    		<div class ="row">
-					<div class="large-12 large-centered columns">
-	  			 		<label style="color: #8B0000">Password<small> Required</small>
+					<div class="small-8 small-centered columns">
+	  			 		<label>Password<small id="smal"> Required</small>
 	    		  		<input name ="Password" ng-model="password" type="text" placeholder="llamas" required/>
 	  		  		</div>
-	  			</div>
-	  			<div class="row">
-  					<div class="large-12 large-centered text-center columns">
-  						<input class="button alert tiny round" type="submit" name="submit" ng-click="addUsers()" value="Submit">
+  					<div class="small-8 small-centered text-center columns">
+  						<input class="button tiny round" type="submit" name="submit" ng-click="addUsers()" value="Submit">
   					</div>
   				</div>
 
