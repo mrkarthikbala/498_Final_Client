@@ -1,4 +1,4 @@
-var errandApp = angular.module('errandApp', ['ngRoute', 'errandControllers', 'errandServices', 'angular-datepicker']);
+var errandApp = angular.module('errandApp', ['ngRoute', 'errandControllers', 'errandServices', '720kb.datepicker']);
 
 errandApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
