@@ -75,7 +75,7 @@ $scope.addUsers = function(){
 }}]);
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
-  console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
+  // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
   Errands.getErrands("").success(function(response){
     $scope.errands = response.data;
     $scope.amount =  []; 
