@@ -76,10 +76,11 @@ $scope.addUsers = function(){
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
   // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
+
   Errands.getErrands("").success(function(response){
     $scope.errands = response.data;
     $scope.amount =  []; 
-    
+
     $scope.getBest = function(errand) {
         //MAKE SURE THESE ARE SET CORRECTLY
         $scope.bestBidAmount = 1000000000000000;
@@ -97,19 +98,15 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
       $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
     }
 
+    $scope.prevPage = function(){
+      
+    }
+
     $scope.dateToEpoch = function(datestring) {
       var deadline = new Date(datestring);
       return deadline.getTime();
     };
-    // $scope.getEpochTime = function(id) {
-    //   for (var i = 0; i < $scope.errands.length; i++) {
-    //     if ($scope.errands[i]['_id'] == id) {
-    //       var deadline = $scope.errands[i]['deadline'];
-    //       alert(deadline);
-    //       return deadline.getTime();
-    //     }
-    //   }
-    // };
+    
   });
 }]);
 
@@ -132,7 +129,44 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
 }]);
 
 errandControllers.controller('addErrandController', ['$scope' , '$window' , function($scope, $window) {
+  $scope.dateTimeNow = function() {
+    $scope.date = new Date();
+  };
+  $scope.dateTimeNow();
+  
+  $scope.toggleMinDate = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+   
+  $scope.maxDate = new Date('2014-06-22');
+  $scope.toggleMinDate();
 
+  $scope.dateOptions = {
+    startingDay: 1,
+    showWeeks: false
+  };
+  
+  // Disable weekend selection
+  $scope.disabled = function(calendarDate, mode) {
+    return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
+  };
+  
+  $scope.hourStep = 1;
+  $scope.minuteStep = 15;
+
+  $scope.timeOptions = {
+    hourStep: [1, 2, 3],
+    minuteStep: [1, 5, 10, 15, 25, 30]
+  };
+
+  $scope.showMeridian = true;
+  $scope.timeToggleMode = function() {
+    $scope.showMeridian = !$scope.showMeridian;
+  };
+  
+  $scope.resetHours = function() {
+    $scope.date.setHours(1);
+  };
 }]);
 
 

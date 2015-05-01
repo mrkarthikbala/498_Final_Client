@@ -20,12 +20,20 @@
 	  		</div>
 		</div>
 
-		<div class ="row">
+<!-- 		<div class ="row">
 			<div class="large-12 large-centered columns">
 		 		<label style="color: #8B0000">Deadline<small> Required</small>
 		 		<datepicker>
 		 			<input name="Deadline" type="text" required/>
 		 		</datepicker>
+	  		</div>
+		</div> -->
+
+		<div class ="row">
+			<div class="large-12 large-centered columns">
+				{{date}}
+		 		<label style="color: #8B0000">Deadline<small> Required</small>
+		 		<datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
 	  		</div>
 		</div>
 
