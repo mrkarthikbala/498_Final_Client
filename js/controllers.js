@@ -106,7 +106,7 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
       var deadline = new Date(datestring);
       return deadline.getTime();
     };
-    
+
   });
 }]);
 
@@ -134,12 +134,14 @@ errandControllers.controller('addErrandController', ['$scope' , '$window' , func
   };
   $scope.dateTimeNow();
   
-  $scope.toggleMinDate = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
+  // $scope.toggleMinDate = function() {
+  //   $scope.minDate = $scope.minDate ? null : new Date();
+  // };
    
-  $scope.maxDate = new Date('2014-06-22');
-  $scope.toggleMinDate();
+  // $scope.maxDate = new Date('2014-06-22');
+  // $scope.toggleMinDate();
+
+  $scope.minDate = new Date();
 
   $scope.dateOptions = {
     startingDay: 1,
@@ -147,9 +149,9 @@ errandControllers.controller('addErrandController', ['$scope' , '$window' , func
   };
   
   // Disable weekend selection
-  $scope.disabled = function(calendarDate, mode) {
-    return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
-  };
+  // $scope.disabled = function(calendarDate, mode) {
+  //   return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
+  // };
   
   $scope.hourStep = 1;
   $scope.minuteStep = 15;
