@@ -76,6 +76,8 @@ $scope.addUsers = function(){
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
   // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
+  $scope.skip= 0;
+  $scope.limit = 10;
 
   Errands.getErrands("").success(function(response){
     $scope.errands = response.data;
@@ -105,7 +107,6 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
     };
   });
 }]);
-
 
 errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
   
