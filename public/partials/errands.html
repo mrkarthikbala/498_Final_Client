@@ -1,7 +1,17 @@
 <div class="row" ng-controller='errandsController'>		
 	<h1 class="text-center"> Errands </h1>
 	<hr>
+  
+  <div class = "row">
+    <div id ="search" class="columns small-12">
+        Search: <input type="text" ng-model="inputValue"/> </search>
+      </div>
+  </div>
+
+
   <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
+
+
   Need A Distance Slider<br/>
   Need A Keyword Search<br/>
   <div class="small-12 columns">
@@ -21,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="items in errands | orderBy:predicate:reverse">
+          <tr ng-repeat="items in errands | filter: inputValue | orderBy:predicate:reverse">
             <td><a href="#/profile/{{items.createdID}}">{{items.createdName}}</a></td>
             <td><a href="#/errands/{{items._id}}">{{items.name}}</a></td>
             <td>{{items.description}}</td>
