@@ -6,9 +6,28 @@
   		<h6>{{errands.createdName}}</h6>
   		<p>{{errands.description}}</p>
   		<h2 id="deadline"> Deadline: {{errands.deadline | date : format : timezone}} </h2>
+  		<input class=" decreaseBid button small radius text-center" type="submit" name="submit" value="Delete">
+
 	</div>
 
 	<div class="small-6 columns bidDiv">
-		<input class=" decreaseBid button small radius text-center" type="submit" name="submit" value="Delete">
+		<timer end-time="dateToEpoch(errands.deadline)">
+            {{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
+        </timer>
+        <p>Best Bid: {{bestBid.bidAmount| currency}}</td></p>
+        <p>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></td></p>
+        <form method="POST" data-abide>
+			<div class ="row">
+				<div class="large-12 large-centered columns">
+					<label style="color: #8B0000"> Bid Amount <small> Required</small>
+					<input name = "Bid" placeholder= "5.39" type="text" required/>
+				</div>
+				<div class="large-12 large-centered text-center columns">
+					<input class="button alert tiny round" type="submit" name="submit" value="Submit">
+				</div>
+			</div>
+		</form>
 	</div>
+
+</div>
 </div>

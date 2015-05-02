@@ -94,19 +94,15 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
         return $scope.bestBid;
         //return the actual bids not the amount
     };
+    
     for (var i =0; i < $scope.errands.length; i++) {
       $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
-    }
-
-    $scope.prevPage = function(){
-      
     }
 
     $scope.dateToEpoch = function(datestring) {
       var deadline = new Date(datestring);
       return deadline.getTime();
     };
-
   });
 }]);
 
@@ -116,14 +112,57 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
   $scope.ErrandId = $routeParams.errandID;
   Errands.getErrand($scope.ErrandId).success(function(response){
     $scope.errands = response.data;
+
+
+    $scope.getBest = function(errand) {
+        //MAKE SURE THESE ARE SET CORRECTLY
+        $scope.bestBidAmount = 1000000000000000;
+        $scope.bestBid;
+        for(var j=0; j < errand.bids.length; j++) {
+          if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
+            $scope.bestBidAmount = errand.bids[j].bidAmount;
+            $scope.bestBid = errand.bids[j];
+          }
+        }
+        return $scope.bestBid;
+        //return the actual bids not the amount
+    };
+
+    $scope.bestBid = $scope.getBest($scope.errands);
+
+  $scope.dateToEpoch = function(datestring) {
+      var deadline = new Date(datestring);
+      return deadline.getTime();
+    };
+
+    $scope.dead = $scope.dateToEpoch($scope.errands.deadline);
   });
+
 }]);
 
-errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', '$window' , function($scope, $routeParams, $http,  Users, $window) {
+errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', 'Errands', '$window' , function($scope, $routeParams, $http,  Users, Errands, $window) {
 
   $scope.UserId = $routeParams.usersId;
+  $scope.theUsersErrands = [];
   Users.getUser($scope.UserId).success(function(response){
     $scope.user = response.data;
+
+    // $scope.theUsersErrands = [];
+
+     Errands.getErrands('?where={\"createdID\":' + "\"" + $scope.user._id + "\""  + '}').success(function(response){
+            console.log(response.data);
+            $scope.theUsersErrands = response.data;
+            console.log($scope.theUsersErrands.length);
+
+     })
+    // for (var i = 0; i<$scope.user.userErrands.length; i++) {
+    //   Errands.getErrand($scope.user.userErrands[i]).success(function(response){
+    //       console.log(response.data.name);
+    //       $scope.theUsersErrands.push(response.data.name);
+    //   });
+    // }
+
+    
     $scope.tasksPostedByUser = '?where={"createdName": $scope.user.name}';
   });
 }]);
@@ -134,13 +173,6 @@ errandControllers.controller('addErrandController', ['$scope' , '$window' , func
   };
   $scope.dateTimeNow();
   
-  // $scope.toggleMinDate = function() {
-  //   $scope.minDate = $scope.minDate ? null : new Date();
-  // };
-   
-  // $scope.maxDate = new Date('2014-06-22');
-  // $scope.toggleMinDate();
-
   $scope.minDate = new Date();
 
   $scope.dateOptions = {
@@ -148,13 +180,8 @@ errandControllers.controller('addErrandController', ['$scope' , '$window' , func
     showWeeks: false
   };
   
-  // Disable weekend selection
-  // $scope.disabled = function(calendarDate, mode) {
-  //   return mode === 'day' && ( calendarDate.getDay() === 0 || calendarDate.getDay() === 6 );
-  // };
-  
   $scope.hourStep = 1;
-  $scope.minuteStep = 15;
+  $scope.minuteStep = 5;
 
   $scope.timeOptions = {
     hourStep: [1, 2, 3],

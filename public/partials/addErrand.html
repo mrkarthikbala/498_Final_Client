@@ -8,7 +8,15 @@
 	<form method="POST" data-abide>
 		<div class ="row">
 			<div class="large-12 large-centered columns">
-				<label style="color: #8B0000"> Name <small> Required</small>
+				<label style="color: #8B0000"> Username <small> Required</small>
+				<input name = "Name" placeholder= "Ranjitah Kumar" type="text" required/>
+			</div>
+		</div>
+
+
+		<div class ="row">
+			<div class="large-12 large-centered columns">
+				<label style="color: #8B0000"> Errand Name <small> Required</small>
 				<input name = "Name" placeholder= "Mow My Lawn" type="text" required/>
 			</div>
 		</div>
@@ -20,18 +28,15 @@
 	  		</div>
 		</div>
 
-<!-- 		<div class ="row">
+		<div class ="row">
 			<div class="large-12 large-centered columns">
-		 		<label style="color: #8B0000">Deadline<small> Required</small>
-		 		<datepicker>
-		 			<input name="Deadline" type="text" required/>
-		 		</datepicker>
+		 		<label style="color: #8B0000">Errand Location<small> Required</small>
+	  			<input name ="Location" type="text" placeholder="1010 W. Green St. Urbana, IL 61801" required/>
 	  		</div>
-		</div> -->
+		</div>
 
 		<div class ="row">
 			<div class="large-12 large-centered columns">
-				{{date}}
 		 		<label style="color: #8B0000">Deadline<small> Required</small>
 		 		<datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" readonly-time="false"></datetimepicker>
 	  		</div>

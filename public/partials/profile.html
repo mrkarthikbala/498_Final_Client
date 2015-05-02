@@ -1,7 +1,20 @@
-<div class="row">
-	<div class="small-12 columns text-center" ng-controller='profileController'>		
-  		<h1>{{user.name}}</h1>
-  		<h2>{{user.email}}</h2>
-  		<h2>{{tasksPostedByUser}}
+<div class="row text-center" ng-controller='profileController'>
+	<h1>{{user.name}}</h1>
+	<h2>{{user.email}}</h2>
+</div>
+	<div class="small-12 left columns text-center" ng-repeat="items in theUsersErrands">
+		<table width="100%">
+        	<thead>
+          		<tr>
+          			What You Have Posted
+          		</tr>
+      		</thead>
+      		</tbody>
+          		<td>
+          			{{items.name}}
+  					{{items.description}}
+  				</td>
+  			</tbody>
+  		</table>
 	</div>
 </div>
