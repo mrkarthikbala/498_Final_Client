@@ -143,27 +143,30 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
 errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', 'Errands', '$window' , function($scope, $routeParams, $http,  Users, Errands, $window) {
 
   $scope.UserId = $routeParams.usersId;
-  $scope.theUsersErrands = [];
+  $scope.thePendingUsersErrands = [];
+  $scope.theCompletedUsersErrands = [];
+  $scope.currDate = new Date();
+  console.log($scope.currDate);
+
   Users.getUser($scope.UserId).success(function(response){
     $scope.user = response.data;
 
     // $scope.theUsersErrands = [];
 
      Errands.getErrands('?where={\"createdID\":' + "\"" + $scope.user._id + "\""  + '}').success(function(response){
-            console.log(response.data);
-            $scope.theUsersErrands = response.data;
-            console.log($scope.theUsersErrands.length);
-
+      console.log(response.data.length);
+      for (var j=0; j < response.data.length; j++) {
+        $scope.errandDate = new Date(response.data[j].deadline);
+        if($scope.errandDate >= $scope.currDate) {
+            $scope.thePendingUsersErrands.push(response.data[j]);
+          }
+        else {
+          $scope.theCompletedUsersErrands.push(response.data[j]);
+        }  
+      }
+      console.log($scope.thePendingUsersErrands);
+      console.log($scope.theCompletedUsersErrands);
      })
-    // for (var i = 0; i<$scope.user.userErrands.length; i++) {
-    //   Errands.getErrand($scope.user.userErrands[i]).success(function(response){
-    //       console.log(response.data.name);
-    //       $scope.theUsersErrands.push(response.data.name);
-    //   });
-    // }
-
-    
-    $scope.tasksPostedByUser = '?where={"createdName": $scope.user.name}';
   });
 }]);
 

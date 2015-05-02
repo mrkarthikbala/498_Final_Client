@@ -2,11 +2,31 @@
 	<h1>{{user.name}}</h1>
 	<h2>{{user.email}}</h2>
 </div>
-	<div class="small-12 left columns text-center" ng-repeat="items in theUsersErrands">
+	<div class="small-6 left columns text-center" ng-repeat="items in thePendingUsersErrands">
 		<table width="100%">
         	<thead>
           		<tr>
-          			What You Have Posted
+          			Pending
+          		</tr>
+      		</thead>
+      		</tbody>
+          		<td>
+          			{{items.name}}
+  					{{items.description}}
+  					{{items.deadline}}
+  					{{items.bids}}
+
+  				</td>
+  			</tbody>
+  		</table>
+	</div>
+</div>
+
+<div class="small-6 right columns text-center" ng-repeat="items in theCompletedUsersErrands">
+		<table width="100%">
+        	<thead>
+          		<tr>
+          			Completed
           		</tr>
       		</thead>
       		</tbody>
