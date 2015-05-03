@@ -40,8 +40,8 @@
             <li><a href="#/login">Login</a></li>
             <li><a href="#/signup">Sign Up</a></li>
             <li><a href="#/errands">View Errands</a></li>
-            <li><a href="#/profile/6666">Go To Profile</a></li>
-            <input class="submission button expand radius" type="submit" name="delete" ng-click="logout()" value="Logout" ng-show"loggedIn">
+            <li><a ng-href="#/profile/{{_id}}">Go To Profile</a></li>
+            <input class="submission button expand radius" type="submit" name="delete" ng-click="logout()" value="Logout" >
           </ul>
       </section>
     </nav>

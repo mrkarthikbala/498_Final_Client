@@ -13,15 +13,30 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 
 errandControllers.controller('navController', ['$scope', 'Users', '$window', function($scope, Users, $window) {
   var loggedInUser = $window.sessionStorage.userEmail;
-  
   $scope.logout = function() {
     console.log("grr");
     $window.sessionStorage.userEmail = undefined;
+    $window.sessionStorage._id = undefined;
+    $window.sessionStorage.loggedIn = false;
     location.reload(); 
   };
-
+  angular.element(document).ready(function () {
+    // alert("hello");
+    $scope.userEmail = $window.sessionStorage.userEmail;
+    $scope.loggedIn = $window.sessionStorage.loggedIn;
+    $scope._id = $window.sessionStorage._id;
+    // NG Show Does Work
+    // Need to change class manually
+  });
   $scope.userEmail = $window.sessionStorage.userEmail;
-  $scope.loggedIn = $scope.userEmail != undefined;
+  $scope.loggedIn = $window.sessionStorage.loggedIn;
+  $scope._id = $window.sessionStorage._id;
+  $scope.$watchGroup(['userEmail', 'loggedIn','_id'], function(newValues, oldValues) {
+    $scope.userEmail = newValues[0];
+    $scope.loggedIn = newValues[1];
+    $scope._id = newValues[2];
+  });
+
 }]);
 
 errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , '$http', function($scope, Users, $window, $http ) {
@@ -46,10 +61,13 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
         console.log(response.message);
         $window.sessionStorage.loggedIn = true;
         $window.sessionStorage.userEmail = response.data.email;
+        $window.sessionStorage.userName = response.data.name;
+        $window.sessionStorage._id = response.data._id;
+        // console.log(response.data._id);
         // console.log(response.data);
         // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
         // console.log("userEmail " + $window.sessionStorage.userEmail );
-
+        window.location.href = "/#/profile/"+response.data._id;
       }).error(function(response){
         console.log(response.message);
       });
@@ -94,8 +112,9 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.limit = $scope.skip + $scope.amt;
   $scope.thePendingUsersErrands = [];
   $scope.theCompletedUsersErrands = [];
-
+  
   Errands.getErrands("").success(function(response){
+    $scope.userEmail = $window.sessionStorage.userEmail;
     $scope.currDate = new Date();
     for (var j=0; j < response.data.length; j++) {
       $scope.errandDate = new Date(response.data[j].deadline);
@@ -210,7 +229,7 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
   });
 }]);
 
-errandControllers.controller('addErrandController', ['$scope' , '$window' , function($scope, $window) {
+errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$window' ,  function($scope, Errands, $window) {
   $scope.dateTimeNow = function() {
     $scope.date = new Date();
   };
@@ -239,6 +258,24 @@ errandControllers.controller('addErrandController', ['$scope' , '$window' , func
   $scope.resetHours = function() {
     $scope.date.setHours(1);
   };
+  $scope.errand = {};
+  $scope.errand['createdName'] = $window.sessionStorage.userName;
+  $scope.errand['createdID'] = $window.sessionStorage._id;
+  $scope.bid = {
+    'bidderID':$window.sessionStorage._id, 
+    'bidderName':$window.sessionStorage.userName
+  };
+  $scope.create = function(errand) {
+    console.log('creating a task');
+    $scope.errand['bids'] = [$scope.bid];
+    console.log(errand);
+    console.log($scope.bid);
+    Errands.postErrand(errand).success(function(data, status, headers, config) {
+      console.log("added Errand");
+    });
+  };
+
+
 }]);
 
 

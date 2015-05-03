@@ -21,13 +21,18 @@ angular.module('errandServices', [])
             return $http.post(baseUrl + '/api/users' ,user);
         };
         Users.getUser = function(id){
-                return $http.get(baseUrl + '/api/users/' + id);
+            return $http.get(baseUrl + '/api/users/' + id);
+        };
+        Users.getUserByEmail = function(email){
+            var query = baseUrl + '/api/users/?where={"email": "'+email+'"}';
+            console.log(query);
+            return $http.get(query);
         };
         Users.updateUser = function(user){
             return $http.put(baseUrl + '/api/users/' + user._id, user);
         };
         Users.deleteUser = function(id){
-                return $http.delete(baseUrl + '/api/users/' + id);
+            return $http.delete(baseUrl + '/api/users/' + id);
         };
         Users.login = function(user){
             
