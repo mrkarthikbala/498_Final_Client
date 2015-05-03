@@ -76,11 +76,25 @@ $scope.addUsers = function(){
 
 errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
   // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
-  $scope.skip= 0;
-  $scope.limit = 10;
-
+  $scope.amt = 10;
+  $scope.skip = 0;
+  $scope.limit = $scope.skip + $scope.amt;
+  $scope.thePendingUsersErrands = [];
+  $scope.theCompletedUsersErrands = [];
+  
   Errands.getErrands("").success(function(response){
-    $scope.errands = response.data;
+    $scope.currDate = new Date();
+    for (var j=0; j < response.data.length; j++) {
+      $scope.errandDate = new Date(response.data[j].deadline);
+      if($scope.errandDate >= $scope.currDate) {
+          $scope.thePendingUsersErrands.push(response.data[j]);
+        }
+      else {
+        $scope.theCompletedUsersErrands.push(response.data[j]);
+      }  
+    }
+    $scope.errands = $scope.thePendingUsersErrands;
+
     $scope.amount =  []; 
 
     $scope.getBest = function(errand) {
@@ -100,6 +114,18 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
     for (var i =0; i < $scope.errands.length; i++) {
       $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
     }
+
+    $scope.nextPage = function(){
+      $scope.skip += $scope.amt;
+      $scope.skip = Math.min($scope.errands.length - $scope.amt, $scope.skip); 
+      $scope.limit = $scope.skip + $scope.amt;
+    };
+
+    $scope.prevPage = function(){
+      $scope.skip -= $scope.amt;
+      $scope.skip = Math.max(0, $scope.skip);
+      $scope.limit = $scope.skip + $scope.amt;
+    };
 
     $scope.dateToEpoch = function(datestring) {
       var deadline = new Date(datestring);

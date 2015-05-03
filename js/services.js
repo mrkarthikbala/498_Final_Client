@@ -40,7 +40,7 @@ angular.module('errandServices', [])
         var baseUrl = $window.sessionStorage.baseurl;
         var Errands = {};
         Errands.getErrands = function(paramString){
-            console.log(paramString);
+            // console.log(paramString);
             return $http.get(baseUrl + '/api/errands' + paramString);
         }
         Errands.getErrand = function(id){
