@@ -18,6 +18,7 @@ errandControllers.controller('navController', ['$scope', 'Users', '$window', fun
     $window.sessionStorage.userEmail = undefined;
     $window.sessionStorage._id = undefined;
     $window.sessionStorage.loggedIn = false;
+    // $scope.userLoggedIn = $window.sessionStorage.loggedIn;
     location.reload(); 
   };
   angular.element(document).ready(function () {
@@ -36,6 +37,10 @@ errandControllers.controller('navController', ['$scope', 'Users', '$window', fun
     $scope.loggedIn = newValues[1];
     $scope._id = newValues[2];
   });
+
+  $scope.userLoggedIn = $window.sessionStorage.loggedIn;
+
+
 
 }]);
 
@@ -68,6 +73,7 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
         // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
         // console.log("userEmail " + $window.sessionStorage.userEmail );
         window.location.href = "/#/profile/"+response.data._id;
+        location.reload(); 
       }).error(function(response){
         console.log(response.message);
       });
@@ -112,6 +118,8 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.limit = $scope.skip + $scope.amt;
   $scope.thePendingUsersErrands = [];
   $scope.theCompletedUsersErrands = [];
+  $scope.showAddButton  = $window.sessionStorage.loggedIn;
+  console.log($scope.showAddButton);
   
   Errands.getErrands("").success(function(response){
     $scope.userEmail = $window.sessionStorage.userEmail;

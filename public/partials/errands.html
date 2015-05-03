@@ -9,9 +9,9 @@
       </div>
   </div>
 
-
-  <a class="button tiny alert" href="#/addErrand">Add Errand</a>
-
+  <div ng-show="{{showAddButton}}" class="row">
+        <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
+  </div>
   <div class="small-12 columns">
       <button class="button" ng-click="prevPage()">Previous</button>
       <button class="button" ng-click="nextPage()">Next</button>

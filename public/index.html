@@ -37,11 +37,12 @@
       <section class="top-bar-section">
           <ul class="right">
             <li><a href="#/settings">Settings</a></li>
-            <li><a href="#/login">Login</a></li>
-            <li><a href="#/signup">Sign Up</a></li>
+            <li><a ng-hide = "{{userLoggedIn}}" href="#/login">Login</a></li>
+            <li><a ng-hide = "{{userLoggedIn}}" href="#/signup">Sign Up</a></li>
             <li><a href="#/errands">View Errands</a></li>
-            <li><a ng-href="#/profile/{{_id}}">Go To Profile</a></li>
-            <input class="submission button expand radius" type="submit" name="delete" ng-click="logout()" value="Logout" >
+            <li><a ng-show = "{{userLoggedIn}}" ng-href="#/profile/{{_id}}">Go To Profile</a></li>
+            <li><a ng-show = "{{userLoggedIn}}" ng-click="logout()">Logout</a></li>
+           <!--  <input class="submission button expand radius" type="submit" name="delete" ng-click="logout()" value="Logout" > -->
           </ul>
       </section>
     </nav>
