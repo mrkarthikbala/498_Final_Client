@@ -205,6 +205,9 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
     $scope.dead = $scope.dateToEpoch($scope.errands.deadline);
   });
 
+    $scope.userLoggedIn = $window.sessionStorage.loggedIn;
+
+
 }]);
 
 errandControllers.controller('profileController', ['$scope', '$routeParams', '$http', 'Users', 'Errands', '$window' , function($scope, $routeParams, $http,  Users, Errands, $window) {
@@ -243,7 +246,9 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
 
   $scope.deleteErrand = function (errand) {
     Errands.deleteErrand(errand._id).success(function(response){
+      console.log("Refresh");
       $scope.refreshErrands();
+      console.log("Done Refreshing");
     })
   }
 }]);

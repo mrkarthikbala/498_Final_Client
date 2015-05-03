@@ -1,8 +1,10 @@
 <div class="row text-center" ng-controller='profileController'>
+  <div class="small-8 columns small-centered">
 	<h1>{{user.name}}</h1>
-	<h2>{{user.email}}</h2>
-  <h2>Logged in User: {{email}}</h2>
-</div>
+	<h3>{{user.email}}</h3>
+  <hr>
+  <!-- <h2>Logged in User: {{email}}</h2>
+ -->
 	<div class="small-6 left columns text-center" ng-repeat="items in thePendingUsersErrands">
 		<table width="100%">
     	<thead>
@@ -21,24 +23,22 @@
 	</table>
   <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
   <a class="button tiny alert" href="#/updateErrand/{{items._id}}">Update Errand</a>
-
 	</div>
-</div>
 
-<div class="small-6 right columns text-center" ng-repeat="items in theCompletedUsersErrands">
-		<table width="100%">
-        	<thead>
-          		<tr>
-          			Completed
-          		</tr>
-      		</thead>
-      		</tbody>
-          		<td>
-          			{{items.name}}
-  					{{items.description}}
-  				</td>
-  			</tbody>
-  		</table>
-      <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
-	</div>
+  <div class="small-6 right columns text-center" ng-repeat="items in theCompletedUsersErrands">
+  		<table width="100%">
+          	<thead>
+            		<tr>
+            			Completed
+            		</tr>
+        		</thead>
+        		</tbody>
+            		<td>
+            			{{items.name}}
+    					{{items.description}}
+    				</td>
+    			</tbody>
+    		</table>
+        <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
+  </div>
 </div>

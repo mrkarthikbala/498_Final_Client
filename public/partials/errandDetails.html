@@ -1,16 +1,17 @@
-<div class="row" ng-controller='errandDetailController'>		
-  
-<div class ="row">
-	<div class="small-6 columns errandsDiv">
-  		<h2> {{errands.name}} </h2>
+<div class="row" ng-controller='errandDetailController'>
+  	<div class="small-8 columns text-center small-centered">
+  		<h1> {{errands.name}} </h1>
+  		<hr>
+  	</div>
+
+  	<div class="small-8 columns errandsDiv small-centered">
   		<h6>{{errands.createdName}}</h6>
   		<p>{{errands.description}}</p>
   		<h2 id="deadline"> Deadline: {{errands.deadline | date : format : timezone}} </h2>
-  		<input class=" decreaseBid button small radius text-center" type="submit" name="submit" value="Delete">
-
 	</div>
 
-	<div class="small-6 columns bidDiv">
+	<div class="small-8 columns bidDiv small-centered">
+		{{errands.deadline}}
 		<timer end-time="dateToEpoch(errands.deadline)">
             {{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
         </timer>
@@ -23,11 +24,10 @@
 					<input name = "Bid" placeholder= "5.39" type="text" required/>
 				</div>
 				<div class="large-12 large-centered text-center columns">
-					<input class="button alert tiny round" type="submit" name="submit" value="Submit">
+					<input class="button tiny" type="submit" name="submit" value="Submit" ng-show = "{{userLoggedIn}}">
 				</div>
 			</div>
 		</form>
 	</div>
 
-</div>
 </div>
