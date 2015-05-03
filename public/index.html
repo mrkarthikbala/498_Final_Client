@@ -31,7 +31,7 @@
 
 <body>
 
-<div class="contain-to-grid sticky">
+<div class="contain-to-grid sticky" ng-controller = "navController">
      <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
      
       <section class="top-bar-section">
@@ -41,6 +41,7 @@
             <li><a href="#/signup">Sign Up</a></li>
             <li><a href="#/errands">View Errands</a></li>
             <li><a href="#/profile/6666">Go To Profile</a></li>
+            <input class="submission button expand radius" type="submit" name="delete" ng-click="logout()" value="Logout" ng-show"loggedIn">
           </ul>
       </section>
     </nav>

@@ -11,6 +11,19 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 
 }]);
 
+errandControllers.controller('navController', ['$scope', 'Users', '$window', function($scope, Users, $window) {
+  var loggedInUser = $window.sessionStorage.userEmail;
+  
+  $scope.logout = function() {
+    console.log("grr");
+    $window.sessionStorage.userEmail = undefined;
+    location.reload(); 
+  };
+
+  $scope.userEmail = $window.sessionStorage.userEmail;
+  $scope.loggedIn = $scope.userEmail != undefined;
+}]);
+
 errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , '$http', function($scope, Users, $window, $http ) {
 
   //Need to figure out sessions
@@ -81,7 +94,7 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.limit = $scope.skip + $scope.amt;
   $scope.thePendingUsersErrands = [];
   $scope.theCompletedUsersErrands = [];
-  
+
   Errands.getErrands("").success(function(response){
     $scope.currDate = new Date();
     for (var j=0; j < response.data.length; j++) {
@@ -174,7 +187,7 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
   $scope.theCompletedUsersErrands = [];
   $scope.currDate = new Date();
   console.log($scope.currDate);
-
+  $scope.email = $window.sessionStorage.userEmail;
   Users.getUser($scope.UserId).success(function(response){
     $scope.user = response.data;
 

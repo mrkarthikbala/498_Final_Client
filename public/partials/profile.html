@@ -1,24 +1,25 @@
 <div class="row text-center" ng-controller='profileController'>
 	<h1>{{user.name}}</h1>
 	<h2>{{user.email}}</h2>
+  <h2>Logged in User: {{email}}</h2>
 </div>
 	<div class="small-6 left columns text-center" ng-repeat="items in thePendingUsersErrands">
 		<table width="100%">
-        	<thead>
-          		<tr>
-          			Pending
-          		</tr>
-      		</thead>
-      		</tbody>
-          		<td>
-          			{{items.name}}
-  					{{items.description}}
-  					{{items.deadline}}
-  					{{items.bids}}
-
-  				</td>
-  			</tbody>
-  		</table>
+    	<thead>
+    		<tr>Pending</tr>
+  		</thead>
+  		</tbody>
+        <tr>
+          <td>
+        {{items.name}}
+        {{items.description}}
+        {{items.deadline}}
+        {{items.bids}}
+        </td>
+        </tr>
+		</tbody>
+	</table>
+  <input class="submission button expand radius" type="submit" name="delete" ng-click="delete()" value="Delete" ng-if = "user.email == email">
 	</div>
 </div>
 
@@ -36,5 +37,6 @@
   				</td>
   			</tbody>
   		</table>
+      <input class="submission button expand radius" type="submit" name="delete" ng-click="delete()" value="Delete" ng-if = "user.email == email">
 	</div>
 </div>
