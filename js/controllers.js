@@ -207,26 +207,37 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
   $scope.currDate = new Date();
   console.log($scope.currDate);
   $scope.email = $window.sessionStorage.userEmail;
-  Users.getUser($scope.UserId).success(function(response){
-    $scope.user = response.data;
 
-    // $scope.theUsersErrands = [];
+  $scope.refreshErrands = function(){
+            Users.getUser($scope.UserId).success(function(response){
+              $scope.user = response.data;
 
-     Errands.getErrands('?where={\"createdID\":' + "\"" + $scope.user._id + "\""  + '}').success(function(response){
-      console.log(response.data.length);
-      for (var j=0; j < response.data.length; j++) {
-        $scope.errandDate = new Date(response.data[j].deadline);
-        if($scope.errandDate >= $scope.currDate) {
-            $scope.thePendingUsersErrands.push(response.data[j]);
-          }
-        else {
-          $scope.theCompletedUsersErrands.push(response.data[j]);
-        }  
-      }
-      console.log($scope.thePendingUsersErrands);
-      console.log($scope.theCompletedUsersErrands);
-     })
-  });
+              // $scope.theUsersErrands = [];
+
+               Errands.getErrands('?where={\"createdID\":' + "\"" + $scope.user._id + "\""  + '}').success(function(response){
+                console.log(response.data.length);
+                for (var j=0; j < response.data.length; j++) {
+                  $scope.errandDate = new Date(response.data[j].deadline);
+                  if($scope.errandDate >= $scope.currDate) {
+                      $scope.thePendingUsersErrands.push(response.data[j]);
+                    }
+                  else {
+                    $scope.theCompletedUsersErrands.push(response.data[j]);
+                  }  
+                }
+                console.log($scope.thePendingUsersErrands);
+                console.log($scope.theCompletedUsersErrands);
+               })
+            });
+};
+
+  $scope.refreshErrands();
+
+  $scope.deleteErrand = function (errand) {
+    Errands.deleteErrand(errand._id).success(function(response){
+      $scope.refreshErrands();
+    })
+  }
 }]);
 
 errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$window' ,  function($scope, Errands, $window) {
@@ -261,15 +272,15 @@ errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$win
   $scope.errand = {};
   $scope.errand['createdName'] = $window.sessionStorage.userName;
   $scope.errand['createdID'] = $window.sessionStorage._id;
-  $scope.bid = {
-    'bidderID':$window.sessionStorage._id, 
-    'bidderName':$window.sessionStorage.userName
-  };
+  console.log("hello");
+  // $scope.bid = {
+  //   'bidderID':$window.sessionStorage._id, 
+  //   'bidderName':$window.sessionStorage.userName
+  // };
+
   $scope.create = function(errand) {
-    console.log('creating a task');
-    $scope.errand['bids'] = [$scope.bid];
-    console.log(errand);
-    console.log($scope.bid);
+    console.log('hello');
+   
     Errands.postErrand(errand).success(function(data, status, headers, config) {
       console.log("added Errand");
     });
@@ -278,4 +289,75 @@ errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$win
 
 }]);
 
+errandControllers.controller('updateErrandController', ['$scope' , '$routeParams', 'Errands', '$window' ,  function($scope, $routeParams,  Errands, $window) {
+  
+  $scope.errandID = $routeParams.errandID;
+  $scope.errand = {};
+  $scope.errand['_id'] = $scope.errandID;
+  Errands.getErrand($scope.errandID).success(function(response){
+      $scope.errandData = response.data;
+      
+      $scope.errand['createdName'] = $window.sessionStorage.userName;
+      $scope.errand['createdID'] = $window.sessionStorage._id;
+      $scope.errand['name'] = $scope.errandData.name;
+      $scope.errand['description'] = $scope.errandData.description;
+      $scope.errand['errandLocation'] = $scope.errandData.errandLocation;
+      $scope.errand['deadline'] = $scope.errandData.deadline;
+      $scope.errand['bids'] = $scope.errandData.bids;
 
+  });
+
+  $scope.dateTimeNow = function() {
+    $scope.date = new Date();
+  };
+  $scope.dateTimeNow();
+  
+  $scope.minDate = new Date();
+
+  $scope.dateOptions = {
+    startingDay: 1,
+    showWeeks: false
+  };
+  
+  $scope.hourStep = 1;
+  $scope.minuteStep = 5;
+
+  $scope.timeOptions = {
+    hourStep: [1, 2, 3],
+    minuteStep: [1, 5, 10, 15, 25, 30]
+  };
+
+  $scope.showMeridian = true;
+  $scope.timeToggleMode = function() {
+    $scope.showMeridian = !$scope.showMeridian;
+  };
+  
+  $scope.resetHours = function() {
+    $scope.date.setHours(1);
+  };
+ 
+  // $scope.errand['createdName'] = $window.sessionStorage.userName;
+  // $scope.errand['createdID'] = $window.sessionStorage._id;
+  // $scope.errand['name'] = $scope.errandData.name;
+  // $scope.errand['description'] = $scope.errandData.description;
+  // $scope.errand['errandLocation'] = $scope.errandData.errandLocation;
+  // $scope.errand['deadline'] = $scope.errandData.deadline;
+
+
+
+
+  $scope.bid = {
+    'bidderID':$window.sessionStorage._id, 
+    'bidderName':$window.sessionStorage.userName
+  };
+
+
+  $scope.editErrand = function(errand) {
+   
+    Errands.updateErrand(errand).success(function(response) {
+      console.log(response.data);
+    });
+  };
+
+
+}]);

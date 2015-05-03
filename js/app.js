@@ -30,6 +30,10 @@ errandApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/addErrand.html',
     controller: 'addErrandController'
   }).
+  when('/updateErrand/:errandID', {
+    templateUrl: 'partials/updateErrand.html',
+    controller: 'updateErrandController'
+  }).
   otherwise({
     redirectTo: '/settings'
   });

@@ -19,7 +19,9 @@
         </tr>
 		</tbody>
 	</table>
-  <input class="submission button expand radius" type="submit" name="delete" ng-click="delete()" value="Delete" ng-if = "user.email == email">
+  <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
+  <a class="button tiny alert" href="#/updateErrand/{{items._id}}">Update Errand</a>
+
 	</div>
 </div>
 
@@ -37,6 +39,6 @@
   				</td>
   			</tbody>
   		</table>
-      <input class="submission button expand radius" type="submit" name="delete" ng-click="delete()" value="Delete" ng-if = "user.email == email">
+      <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
 	</div>
 </div>

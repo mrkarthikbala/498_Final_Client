@@ -1,7 +1,7 @@
 
 
-	<div class="row" ng-controller='addErrandController'>		    
-		<h1 class="text-center"> Add Errand </h1>
+	<div class="row" ng-controller='updateErrandController'>		    
+		<h1 class="text-center"> Update Errand </h1>
 		<hr>
 	</div>
 
@@ -28,12 +28,6 @@
 	  		</div>
 		</div>
 
-		<div class ="row">
-			<div class="large-12 large-centered columns">
-		 		<label style="color: #8B0000">Max Bid<small> Required</small>
-	  			<input name ="Description" type="text" ng-model = "errand.setPrice" placeholder="5.23" required/>
-	  		</div>
-		</div>
 
 		<div class ="row">
 			<div class="large-12 large-centered columns">
@@ -51,7 +45,7 @@
 
 		<div class="row">
 			<div class="large-12 large-centered text-center columns">
-				<input class="button alert tiny round" ng-click="create(errand)" type="submit" name="submit" value="Submit">
+				<input class="button alert tiny round" ng-click="editErrand(errand)" type="submit" name="submit" value="Submit">
 			</div>
 		</div>
 		</form>
