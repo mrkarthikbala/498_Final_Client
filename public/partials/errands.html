@@ -1,47 +1,58 @@
 <div class="row" ng-controller='errandsController'>		
-	<h1 class="text-center"> Errands </h1>
-	<hr>
-  
-  <div class = "row">
-    <div class="columns small-12">
-        <label>Search: 
-        <input id ="search" type="text" ng-model="inputValue"/>
-      </div>
+	<div class="small-8 columns small-centered">
+      <h1 class="text-center"> Errands </h1>
+    	<hr>
   </div>
+</div>
 
-  <div ng-show="{{showAddButton}}" class="row">
-        <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
-  </div>
-  <div class="small-12 columns">
-      <button class="button" ng-click="prevPage()">Previous</button>
-      <button class="button" ng-click="nextPage()">Next</button>
-      <table width="100%">
-      <div class="small-12 columns">
-      <table id= "myTable" width="100%">
-        <thead>
-          <tr>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'createdName'; reverse=!reverse">Posted By</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'name'; reverse=!reverse">Name</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'description'; reverse=!reverse">Errand Description</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'timeLeft'; reverse=!reverse">Expiration</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidAmount'; reverse=!reverse">Current Best Bid</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidderName'; reverse=!reverse">Current Best Bidder</a></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="errand in errands | filter: inputValue | orderBy:predicate:reverse | limitTo:limit" ng-show="$index >= skip">
-            <td><a href="#/profile/{{errand.createdID}}">{{errand.createdName}}</a></td>
-            <td><a href="#/errands/{{errand._id}}">{{errand.name}}</a></td>
-            <td>{{errand.description}}</td>
-            <td>
-              <timer end-time="dateToEpoch(errand.deadline)">
-                {{days}}:{{hours}}:{{minutes}}:{{seconds}}
-              </timer>
-            </td>
-            <td>{{errand.bestBid.bidAmount | currency}}</td>
-            <td><a href="#/profile/{{errand.bestBid.bidderID}}">{{errand.bestBid.bidderName}}</td>
-          </tr>  
-        </tbody>
-      </table>
+<div class = "row">
+  <div class="columns small-8 small-centered">
+      <label>Search: 
+      <input id ="search" type="text" ng-model="inputValue"/>
+    </div>
+</div>
+
+<div ng-show="{{showAddButton}}" class="row">
+    <div class="small-12 columns">
+      <a  class="button tiny alert" href="#/addErrand">Add Errand</a>
+    </div>
+</div>
+
+
+      <div class="row">
+        <div class="small-8 columns small-centered">
+
+          <button class="button" ng-click="prevPage()">Previous</button>
+          <button class="button" ng-click="nextPage()">Next</button>
+            <table>
+              <thead>
+                <tr>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'createdName'; reverse=!reverse">Posted By</a></th>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'name'; reverse=!reverse">Name</a></th>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'description'; reverse=!reverse">Errand Description</a></th>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'timeLeft'; reverse=!reverse">Expiration</a></th>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidAmount'; reverse=!reverse">Current Bid</a></th>
+                   <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidderName'; reverse=!reverse">Current Bidder</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="errand in errands | filter: inputValue | orderBy:predicate:reverse | limitTo:limit" ng-show="$index >= skip">
+                  <td><a href="#/profile/{{errand.createdID}}">{{errand.createdName}}</a></td>
+                  <td><a href="#/errands/{{errand._id}}">{{errand.name}}</a></td>
+                  <td>{{errand.description}}</td>
+                  <td>
+                    <timer end-time="dateToEpoch(errand.deadline)">
+                      {{days}}:{{hours}}:{{minutes}}:{{seconds}}
+                    </timer>
+                  </td>
+                  <td>{{errand.bestBid.bidAmount | currency}}</td>
+                  <td><a href="#/profile/{{errand.bestBid.bidderID}}">{{errand.bestBid.bidderName}}</td>
+                </tr>  
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
   </div>
 </div>

@@ -1,6 +1,8 @@
-<div class="row" ng-controller='signupController'>		    
+<div class="row" ng-controller='signupController'>	
+<div class="small-6 small-centered columns">
 	<h1 class="text-center"> Sign Up </h1>
 	<hr>
+</div>
 </div>
 
 <table>
@@ -8,19 +10,19 @@
   	<tr>
   		<form method="POST" data-abide>
   			<div class ="row">
-				<div class="small-8 small-centered columns">
+				<div class="small-6 small-centered columns">
       				<label> Name <small id="smal"> Required</small>
         			<input name = "Username" ng-model="name" placeholder= "Ranjitah Kumar" type="text" required/>
       			</div>
-				<div class="small-8 small-centered columns">
+				<div class="small-6 small-centered columns">
       				<label> Email <small id="smal"> Required</small>
         			<input name = "Email" ng-model="email" placeholder= "uiucwp@gmail.com" type="text" required/>
       			</div>
-				<div class="small-8 small-centered columns">
+				<div class="small-6 small-centered columns">
   			 		<label>Password<small id="smal"> Required</small>
     		  		<input name ="Password" ng-model="password" type="text" placeholder="llamas" required/>
   		  		</div>
-					<div class="small-8 small-centered text-center columns">
+					<div class="small-6 small-centered text-center columns">
 						<input class="submission button expand radius" type="submit" name="submit" ng-click="addUsers()" value="Sign Up">
 					</div>
 				</div>

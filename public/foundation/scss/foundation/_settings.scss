@@ -79,7 +79,7 @@ $include-html-global-classes: $include-html-classes;
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+$row-width: 100%;
 // $total-columns: 12;
 // $column-gutter: rem-calc(30);
 
@@ -201,16 +201,16 @@ $blue:	#0000FF;
 
 // We use these to control header font styles
 // $header-font-family: $body-font-family;
-// $header-font-weight: $font-weight-normal;
+$header-font-weight: 500;
 // $header-font-style: normal;
 $header-font-color: $blue;
 // $header-line-height: 1.4;
-$header-top-margin: .8rem;
-// $header-bottom-margin: .5rem;
+$header-top-margin: .4rem;
+$header-bottom-margin: .4rem;
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
+$h1-font-size: rem-calc(50);
 // $h2-font-size: rem-calc(37);
 // $h3-font-size: rem-calc(27);
 // $h4-font-size: rem-calc(23);
@@ -1284,7 +1284,7 @@ $form-label-font-color: scale-color($blue, $lightness: 30%);
 // $table-border-color: $gainsboro;
 
 // These control the table head styles
-$table-head-bg: $blue;
+// $table-head-bg: $blue;
 // $table-head-font-size: rem-calc(14);
 $table-head-font-color: $red;
 // $table-head-font-weight: $font-weight-bold;
@@ -1387,7 +1387,7 @@ $topbar-bg-color: $red;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: rem-calc(60);
+$topbar-height: rem-calc(80);
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
