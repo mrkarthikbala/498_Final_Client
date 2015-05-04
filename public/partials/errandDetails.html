@@ -1,21 +1,22 @@
 <div class="row" ng-controller='errandDetailController'>
   	<div class="small-8 columns text-center small-centered">
-  		<h1> {{errands.name}} </h1>
+  		<h1> {{errand.name}} </h1>
   		<hr>
   	</div>
 
   	<div class="small-8 columns errandsDiv small-centered">
-  		<h6>{{errands.createdName}}</h6>
-  		<p>{{errands.description}}</p>
-  		<h2 id="deadline"> Deadline: {{errands.deadline | date : format : timezone}} </h2>
+  		<h6>{{errand.createdName}}</h6>
+  		<p>{{errand.description}}</p>
+  		<h2 id="deadline"> Deadline: {{errand.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h2>
 	</div>
 
 	<div class="small-8 columns bidDiv small-centered">
-		{{errands.deadline}}
-		<timer end-time="dateToEpoch(errands.deadline)">
-            {{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.
-        </timer>
+		<!-- {{dateToEpoch(errand.deadline)}}<br/>
+		<timer end-time="dateToEpoch(errand.deadline)">
+            {{days}}:{{hours}}:{{minutes}}:{{seconds}}
+        </timer> -->
         <p>Best Bid: {{bestBid.bidAmount| currency}}</td></p>
+        
         <p>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></td></p>
         <form method="POST" data-abide>
 			<div class ="row">

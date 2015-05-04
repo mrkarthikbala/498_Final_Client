@@ -20,7 +20,7 @@ errandControllers.controller('navController', ['$scope', 'Users', '$window', fun
     $window.sessionStorage.loggedIn = false;
     // $scope.userLoggedIn = $window.sessionStorage.loggedIn;
     window.location.href = "/#/settings/";
-    location.reload(); 
+    //location.reload(); 
   };
   angular.element(document).ready(function () {
     // alert("hello");
@@ -179,7 +179,7 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
   
   $scope.ErrandId = $routeParams.errandID;
   Errands.getErrand($scope.ErrandId).success(function(response){
-    $scope.errands = response.data;
+    $scope.errand = response.data;
 
 
     $scope.getBest = function(errand) {
@@ -196,14 +196,14 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
         //return the actual bids not the amount
     };
 
-    $scope.bestBid = $scope.getBest($scope.errands);
-
-  $scope.dateToEpoch = function(datestring) {
+    $scope.bestBid = $scope.getBest($scope.errand);
+    
+    $scope.dateToEpoch = function(datestring) {
       var deadline = new Date(datestring);
       return deadline.getTime();
     };
-
-    $scope.dead = $scope.dateToEpoch($scope.errands.deadline);
+    // $scope.epoch = $scope.dateToEpoch($scope.errand.deadline);
+    // console.log(typeof($scope.epoch));
   });
 
     $scope.userLoggedIn = $window.sessionStorage.loggedIn;
@@ -297,6 +297,7 @@ errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$win
    
     Errands.postErrand(errand).success(function(data, status, headers, config) {
       console.log("added Errand");
+      window.location.href = "/#/errands/";
     });
   };
 
