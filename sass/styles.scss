@@ -33,7 +33,7 @@ a {
 
 #ANGTFT {
  	width: 220px;
-	height: 100px;
+	height: 80px;
 }
 
 #smal {
@@ -44,6 +44,17 @@ a {
 // 	width: 300px;
 // }
 
-#search {
-	//background-color: #8B0000;
+#cover {
+	left:0px;
+	height: 800px;
+	width: 1800px;
+}
+
+#rowLink {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+#rowLink a {
+	text-decoration: none;
 }

@@ -19,6 +19,7 @@ errandControllers.controller('navController', ['$scope', 'Users', '$window', fun
     $window.sessionStorage._id = undefined;
     $window.sessionStorage.loggedIn = false;
     // $scope.userLoggedIn = $window.sessionStorage.loggedIn;
+    window.location.href = "/#/settings/";
     location.reload(); 
   };
   angular.element(document).ready(function () {

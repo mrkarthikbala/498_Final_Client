@@ -1,51 +1,51 @@
-
-
-	<div class="row" ng-controller='updateErrandController'>		    
+	<div class="row" ng-controller='updateErrandController'>
+	  <div class= "small-8 columns small-centered">		    		    
 		<h1 class="text-center"> Update Errand </h1>
 		<hr>
 	</div>
+</div>
 
 	<form method="POST" data-abide>
 		<div class ="row">
-			<div class="large-12 large-centered columns">
-				<label style="color: #8B0000"> Username <small> Required</small>
+			<div class="small-8 small-centered columns">
+				<label> Username <small id="smal"> Required</small>
 				<input name = "Name" placeholder= "Ranjitah Kumar" readonly=true type="text" ng-model="errand.createdName" required/>
 			</div>
 		</div>
 
 
 		<div class ="row">
-			<div class="large-12 large-centered columns">
-				<label style="color: #8B0000"> Errand Name <small> Required</small>
-				<input name = "Name" placeholder= "Mow My Lawn" ng-model="errand.name" type="text" required/>
+			<div class="small-8 small-centered columns">
+				<label> Errand Name <small id="smal"> Required</small>
+				<input name = "Name" placeholder= "Mow My Lawn" readonly=true ng-model="errand.name" type="text" required/>
 			</div>
 		</div>
 		
 		<div class ="row">
-			<div class="large-12 large-centered columns">
-		 		<label style="color: #8B0000">Description<small> Required</small>
+			<div class="small-8 small-centered columns">
+		 		<label>Description<small id="smal"> Required</small>
 	  			<input name ="Description" type="text" ng-model = "errand.description" placeholder="20 acre lawn that requires proper mowing. I will provide the appropriate equiptment" required/>
 	  		</div>
 		</div>
 
 
 		<div class ="row">
-			<div class="large-12 large-centered columns">
-		 		<label style="color: #8B0000">Errand Location<small> Required</small>
-	  			<input name ="Location" type="text"  ng-model = "errand.errandLocation" placeholder="1010 W. Green St. Urbana, IL 61801" required/>
+			<div class="small-8 small-centered columns">
+		 		<label>Errand Location<small id="smal"> Required</small>
+	  			<input name ="Location" type="text"  readonly=true ng-model = "errand.errandLocation" placeholder="1010 W. Green St. Urbana, IL 61801" required/>
 	  		</div>
 		</div>
 
 		<div class ="row">
-			<div class="large-12 large-centered columns">
-		 		<label style="color: #8B0000">Deadline<small> Required</small>
+			<div class="small-8 small-centered columns">
+		 		<label>Deadline<small id="smal"> Required</small>
 		 		<datetimepicker min-date="minDate"  ng-model = "errand.deadline" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" readonly-time="false"></datetimepicker>
 	  		</div>
 		</div>
 
 		<div class="row">
-			<div class="large-12 large-centered text-center columns">
-				<input class="button alert tiny round" ng-click="editErrand(errand)" type="submit" name="submit" value="Submit">
+			<div class="small-8 small-centered text-center columns">
+				<input class="submission button expand radius" ng-click="editErrand(errand)" type="submit" name="submit" value="Submit">
 			</div>
 		</div>
 		</form>
