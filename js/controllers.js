@@ -9,6 +9,13 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 
   };
 
+  $('a[href*=#]').click(function(event){
+    $('html, body').animate({
+      scrollTop: $( $.attr(this, 'href') ).offset().top -50
+  }, 600);
+  event.preventDefault();
+
+  });
 }]);
 
 errandControllers.controller('navController', ['$scope', 'Users', '$window', function($scope, Users, $window) {

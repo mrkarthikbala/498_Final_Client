@@ -40,10 +40,6 @@ a {
 	color: #8B0000;
 }
 
-// #description {
-// 	width: 300px;
-// }
-
 #cover {
 	left:0px;
 	height: 800px;
@@ -58,3 +54,81 @@ a {
 #rowLink a {
 	text-decoration: none;
 }
+
+#picture {
+	background-image: url("../pictures/ANGTFT3.png");
+	//background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1100px;
+    background-attachment: fixed;
+    position: relative;
+}
+
+#arrows {
+	// position: absolute;
+	margin-left: 50%;
+	margin-top: 20%;
+	font-size: 50px;
+
+}
+
+#wrapper {
+	height: 500px;
+}
+
+.title {
+	text-align: center;
+}
+
+.subTitle {
+	color: rgb(46, 59, 78);
+	text-align: center;
+	position: relative;
+	// font-size: 19px;
+	line-height: $defaultLineHeight;
+	font-weight: $defaultFontWeight;
+	margin-top: 5px;
+	font-family: $subHeadingFont;
+	margin-bottom: 60px;
+}
+
+.footer {
+  background-color: #af0606;
+  padding: 2rem 4rem;
+  text-align: center;
+  color: #fff;
+  i {
+    font-size: 100px;
+    margin-bottom: 20px;
+  }
+}
+
+.footer {
+  h4 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 10px;
+  }
+  p {
+    font-weight: 300; 
+    font-size: .8rem;
+  }
+}
+
+.footer-links {
+  list-style-type: none;
+  a {
+    color: #fff;
+    font-weight: 300;
+    font-size: .8rem;
+  }
+  li {
+    margin-top: .5rem;
+  }
+}
+
+

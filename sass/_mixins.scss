@@ -1,0 +1,13 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin animation($name, $speed , $type) {
+  	-webkit-animation: $name $speed;
+	-webkit-animation-fill-mode: $type;
+	-moz-animation:$name  $speed ;
+	-moz-animation-fill-mode:$type;
+}
