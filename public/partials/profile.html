@@ -3,42 +3,54 @@
 	<h1>{{user.name}}</h1>
 	<h3>{{user.email}}</h3>
   <hr>
-  <!-- <h2>Logged in User: {{email}}</h2>
- -->
-	<div class="small-6 left columns text-center" ng-repeat="items in thePendingUsersErrands">
+	<div class="small-6 left columns text-center">
 		<table width="100%">
     	<thead>
-    		<tr>Pending</tr>
+    		<h2>Pending</h2>
   		</thead>
   		</tbody>
-        <tr>
-          <td>
-        {{items.name}}
-        {{items.description}}
-        {{items.deadline}}
-        {{items.bids}}
+        <tr ng-repeat="items in thePendingUsersErrands">
+        
+        <td>
+        {{items.name}}<br/>
+        {{items.description}}<br/>
+        <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
+        
+        <div class="small-6 left columns text-center buttonD">
+          <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
+        </div>
+
+        <div class="small-6 right columns text-center buttonD">
+          <a class="submission button tiny" href="#/updateErrand/{{items._id}}">Update Errand</a> 
+        </div>    
+        
         </td>
+        
         </tr>
 		</tbody>
 	</table>
-  <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
-  <a class="button tiny alert" href="#/updateErrand/{{items._id}}">Update Errand</a>
+
+  
 	</div>
 
-  <div class="small-6 right columns text-center" ng-repeat="items in theCompletedUsersErrands">
+
+  <div class="small-6 right columns text-center">
   		<table width="100%">
           	<thead>
-            		<tr>
-            			Completed
-            		</tr>
+               <h2>Completed</h2>
         		</thead>
         		</tbody>
+              <tr ng-repeat="items in theCompletedUsersErrands">
             		<td>
-            			{{items.name}}
-    					{{items.description}}
-    				</td>
+            	   {{items.name}}
+    					   {{items.description}}
+                 
+                 <div class="small-6 left columns text-center buttonD">
+                   <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
+                 </div>
+    				  </td>
+          </tr>
     			</tbody>
-    		</table>
-        <input class="submission button expand radius" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
+    		</table>   
   </div>
 </div>

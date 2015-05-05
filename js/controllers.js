@@ -21,13 +21,12 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 errandControllers.controller('navController', ['$scope', 'Users', '$window', function($scope, Users, $window) {
   var loggedInUser = $window.sessionStorage.userEmail;
   $scope.logout = function() {
-    console.log("grr");
     $window.sessionStorage.userEmail = undefined;
     $window.sessionStorage._id = undefined;
     $window.sessionStorage.loggedIn = false;
     // $scope.userLoggedIn = $window.sessionStorage.loggedIn;
     window.location.href = "/#/settings/";
-    //location.reload(); 
+    location.reload(); 
   };
   angular.element(document).ready(function () {
     // alert("hello");
@@ -254,9 +253,8 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
 
   $scope.deleteErrand = function (errand) {
     Errands.deleteErrand(errand._id).success(function(response){
-      console.log("Refresh");
       $scope.refreshErrands();
-      console.log("Done Refreshing");
+      location.reload(); 
     })
   }
 }]);
