@@ -11,7 +11,7 @@ angular.module('errandServices', [])
         }
     })
     .factory('Users', function($http, $window) {      
-        var baseUrl = $window.sessionStorage.baseurl;
+        var baseUrl = "http://localhost:4000"; //$window.sessionStorage.baseurl;
         var Users = {};
         Users.getUsers = function(paramString) {
                 return $http.get(baseUrl+'/api/users' + paramString);
