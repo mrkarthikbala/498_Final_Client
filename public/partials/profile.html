@@ -12,9 +12,11 @@
         <tr ng-repeat="items in thePendingUsersErrands">
         
         <td>
-        <h4>{{items.name}}</h4><br/>
-        <p>{{items.description}}</p>
+        <h4 class="subheader">{{items.name}}</h4>
+        <h5>Errand Location: {{items.errandLocation}}</h5>
         <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
+
+        <p>{{items.description}}</p>
         
         <div class="small-6 left columns text-center buttonD">
           <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
