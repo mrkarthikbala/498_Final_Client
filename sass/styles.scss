@@ -7,10 +7,6 @@
 @import "foundation/settings";
 @import "foundation";
 
-#rowLink {
-	font-size: 15px;
-}
-
 a {
 	text-decoration: none;
 }
@@ -91,8 +87,12 @@ label {
 	font-family: $subHeadingFont;
 }
 
+p {
+	font-family: $headingFont;
+}
+
 .subTitle {
-	color: rgb(46, 59, 78);
+	color: $blue;
 	text-align: center;
 	position: relative;
 	line-height: $defaultLineHeight;
