@@ -6,14 +6,14 @@
 	<div class="small-6 left columns text-center">
 		<table width="100%">
     	<thead>
-    		<h2>Pending</h2>
+    		<h3 class="subheader">Pending</h3>
   		</thead>
   		</tbody>
         <tr ng-repeat="items in thePendingUsersErrands">
         
         <td>
-        {{items.name}}<br/>
-        {{items.description}}<br/>
+        <h4>{{items.name}}</h4><br/>
+        <p>{{items.description}}</p>
         <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
         
         <div class="small-6 left columns text-center buttonD">
@@ -37,13 +37,13 @@
   <div class="small-6 right columns text-center">
   		<table width="100%">
           	<thead>
-               <h2>Completed</h2>
+               <h3 class="subheader">Completed</h3>
         		</thead>
         		</tbody>
               <tr ng-repeat="items in theCompletedUsersErrands">
             		<td>
-            	   {{items.name}}
-    					   {{items.description}}
+            	   <h4>{{items.name}}</h4><br/>
+    					   <p>{{items.description}}</p>
                  
                  <div class="small-6 left columns text-center buttonD">
                    <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">

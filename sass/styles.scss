@@ -16,14 +16,10 @@ a {
 }
 
 .errandsDiv {
-	// border: solid red;
-	// border-radius: 20px;
 	margin-top: 4%;
 }
 
 .bidDiv {
-	// border: solid #8B0000;
-	// border-radius: 10px;
 	margin-bottom: 5%;
 }
 
@@ -57,19 +53,20 @@ a {
 
 #picture {
 	background-image: url("../pictures/ANGTFT3.png");
-	//background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 1100px;
     background-attachment: fixed;
     position: relative;
+    opacity: .7;
 }
 
 #arrows {
-	// position: absolute;
-	margin-left: 50%;
+	position: absolute;
+	margin-left: 40%;
 	margin-top: 20%;
-	font-size: 50px;
+	font-size: 30px;
+	opacity: .85;
 
 }
 
@@ -81,15 +78,23 @@ a {
 	height: 500px;
 }
 
+#missionSection {
+	margin-top: 15px;
+}
+
 .title {
 	text-align: center;
+	font-family: $headingFont;
+}
+
+label {
+	font-family: $subHeadingFont;
 }
 
 .subTitle {
 	color: rgb(46, 59, 78);
 	text-align: center;
 	position: relative;
-	// font-size: 19px;
 	line-height: $defaultLineHeight;
 	font-weight: $defaultFontWeight;
 	margin-top: 5px;

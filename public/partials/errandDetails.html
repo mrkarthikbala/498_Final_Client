@@ -5,19 +5,14 @@
   	</div>
 
   	<div class="small-8 columns errandsDiv small-centered">
-  		<h6>{{errand.createdName}}</h6>
+  		<h3 class="subheader">{{errand.createdName}}</h3>
   		<p>{{errand.description}}</p>
-  		<h2 id="deadline"> Deadline: {{errand.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h2>
+  		<h6 id="deadline"> Deadline: {{errand.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
 	</div>
 
 	<div class="small-8 columns bidDiv small-centered">
-		<!-- {{dateToEpoch(errand.deadline)}}<br/>
-		<timer end-time="dateToEpoch(errand.deadline)">
-            {{days}}:{{hours}}:{{minutes}}:{{seconds}}
-        </timer> -->
-        <p>Best Bid: {{bestBid.bidAmount| currency}}</td></p>
-        
-        <p>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></td></p>
+        <h6>Best Bid: {{bestBid.bidAmount| currency}}</h6>
+        <h6>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></h6>
         <form method="POST" data-abide>
 			<div class ="row">
 				<div class="large-12 large-centered columns">

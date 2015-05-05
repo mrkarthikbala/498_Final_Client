@@ -200,7 +200,7 @@ $blue:	#0000FF;
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
+$header-font-family:'Bree Serif';
 $header-font-weight: 500;
 // $header-font-style: normal;
 $header-font-color: $blue;
@@ -227,7 +227,7 @@ $h1-font-size: rem-calc(50);
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
-// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
+$subheader-font-color: $red;
 // $subheader-font-weight: $font-weight-normal;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
