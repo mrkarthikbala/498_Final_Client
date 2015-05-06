@@ -18,11 +18,11 @@
         <form method="POST" data-abide>
 			<div class ="row">
 				<div class="large-12 large-centered columns">
-					<label style="color: #8B0000"> Bid Amount <small> Required</small>
-					<input name = "Bid" placeholder= "5.39" type="text" required/>
+					<label> Bid Amount <small id="smal"> Required</small>
+					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" required/>
 				</div>
 				<div class="large-12 large-centered text-center columns">
-					<input class="button tiny" type="submit" name="submit" value="Submit" ng-show = "{{userLoggedIn}}">
+					<input class="button tiny" type="submit" name="submit" value="Submit" ng-show = "{{userLoggedIn}}" ng-click="newBid()">
 				</div>
 			</div>
 		</form>

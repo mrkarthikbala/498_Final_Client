@@ -2,7 +2,7 @@ var errandControllers = angular.module('errandControllers', []);
 
 errandControllers.controller('settingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
-
+  // $window.sessionStorage.baseurl  = "http://localhost:4000";
   $scope.setUrl = function(){
     $window.sessionStorage.baseurl = $scope.url; 
     $scope.displayText = "URL set";
@@ -62,12 +62,19 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
   //   $scope.displayText = "URL set";
 
   // };
+  
   $scope.loginUser = function(){
-     
-      $scope.loginRequest = {
-        email: $scope.email,
-        password: $scope.password
-      }
+    
+   
+
+    if($scope.password != null && $scope.email!=null) {
+        
+          $scope.loginRequest = {
+              email: $scope.email,
+              password: $scope.password
+          }
+
+
      
       Users.login($scope.loginRequest).success(function(response){
         console.log(response.message);
@@ -75,16 +82,15 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
         $window.sessionStorage.userEmail = response.data.email;
         $window.sessionStorage.userName = response.data.name;
         $window.sessionStorage._id = response.data._id;
-        // console.log(response.data._id);
-        // console.log(response.data);
-        // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
-        // console.log("userEmail " + $window.sessionStorage.userEmail );
+        
         window.location.href = "/#/profile/"+response.data._id;
         location.reload(); 
       }).error(function(response){
         console.log(response.message);
       });
 
+
+    }
   };
 
 }]);
@@ -212,6 +218,23 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
     // console.log(typeof($scope.epoch));
   });
 
+  $scope.newBid = function(){
+    if($scope.bidAmount < $scope.bestBid.bidAmount){
+        var newBid = {};
+        newBid['bidAmount'] = $scope.bidAmount;
+        newBid['bidderID'] = $window.sessionStorage._id;
+        newBid['bidderName'] = $window.sessionStorage.userName;
+        $scope.errand.bids.push(newBid);
+
+        Errands.updateErrand($scope.errand).success(function(response) {
+          console.log("success");
+          location.reload();
+        }).error(function(response){
+          console.log(response.message);
+        });
+    }
+
+  }
     $scope.userLoggedIn = $window.sessionStorage.loggedIn;
 
 
@@ -324,6 +347,7 @@ errandControllers.controller('updateErrandController', ['$scope' , '$routeParams
       $scope.errand['errandLocation'] = $scope.errandData.errandLocation;
       $scope.errand['deadline'] = $scope.errandData.deadline;
       $scope.errand['bids'] = $scope.errandData.bids;
+      console.log($scope.errand['bids']);
 
   });
 
@@ -375,7 +399,9 @@ errandControllers.controller('updateErrandController', ['$scope' , '$routeParams
   $scope.editErrand = function(errand) {
    
     Errands.updateErrand(errand).success(function(response) {
-      console.log(response.data);
+      window.location.href = "/#/errands/";
+    }).error(function(response){
+      console.log(response.message);
     });
   };
 
