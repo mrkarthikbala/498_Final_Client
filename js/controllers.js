@@ -133,58 +133,69 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.theCompletedUsersErrands = [];
   $scope.showAddButton  = $window.sessionStorage.loggedIn;
   console.log($scope.showAddButton);
-  
-  Errands.getErrands("").success(function(response){
-    $scope.userEmail = $window.sessionStorage.userEmail;
-    $scope.currDate = new Date();
-    for (var j=0; j < response.data.length; j++) {
-      $scope.errandDate = new Date(response.data[j].deadline);
-      if($scope.errandDate >= $scope.currDate) {
-          $scope.thePendingUsersErrands.push(response.data[j]);
-        }
-      else {
-        $scope.theCompletedUsersErrands.push(response.data[j]);
-      }  
-    }
-    $scope.errands = $scope.thePendingUsersErrands;
+  var getErrands = function(){
+	  Errands.getErrands("").success(function(response){
+	    $scope.userEmail = $window.sessionStorage.userEmail;
+	    $scope.currDate = new Date();
+	    for (var j=0; j < response.data.length; j++) {
+	      $scope.errandDate = new Date(response.data[j].deadline);
+	      if($scope.errandDate >= $scope.currDate) {
+	          $scope.thePendingUsersErrands.push(response.data[j]);
+	        }
+	      else {
+	        $scope.theCompletedUsersErrands.push(response.data[j]);
+	      }  
+	    }
+	    $scope.errands = $scope.thePendingUsersErrands;
 
-    $scope.amount =  []; 
+	    $scope.amount =  []; 
 
-    $scope.getBest = function(errand) {
-        //MAKE SURE THESE ARE SET CORRECTLY
-        $scope.bestBidAmount = 1000000000000000;
-        $scope.bestBid;
-        for(var j=0; j < errand.bids.length; j++) {
-          if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
-            $scope.bestBidAmount = errand.bids[j].bidAmount;
-            $scope.bestBid = errand.bids[j];
-          }
-        }
-        return $scope.bestBid;
-        //return the actual bids not the amount
-    };
-    
-    for (var i =0; i < $scope.errands.length; i++) {
-      $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
-    }
+	    $scope.getBest = function(errand) {
+	        //MAKE SURE THESE ARE SET CORRECTLY
+	        $scope.bestBidAmount = 1000000000000000;
+	        $scope.bestBid;
+	        for(var j=0; j < errand.bids.length; j++) {
+	          if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
+	            $scope.bestBidAmount = errand.bids[j].bidAmount;
+	            $scope.bestBid = errand.bids[j];
+	          }
+	        }
+	        return $scope.bestBid;
+	        //return the actual bids not the amount
+	    };
+	    
+	    for (var i =0; i < $scope.errands.length; i++) {
+	      $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
+	    }
 
-    $scope.nextPage = function(){
-      $scope.skip += $scope.amt;
-      $scope.skip = Math.min($scope.errands.length - $scope.amt, $scope.skip); 
-      $scope.limit = $scope.skip + $scope.amt;
-    };
+	    $scope.nextPage = function(){
+	      $scope.skip += $scope.amt;
+	      $scope.skip = Math.min($scope.errands.length - $scope.amt, $scope.skip); 
+	      $scope.limit = $scope.skip + $scope.amt;
+	    };
 
-    $scope.prevPage = function(){
-      $scope.skip -= $scope.amt;
-      $scope.skip = Math.max(0, $scope.skip);
-      $scope.limit = $scope.skip + $scope.amt;
-    };
+	    $scope.prevPage = function(){
+	      $scope.skip -= $scope.amt;
+	      $scope.skip = Math.max(0, $scope.skip);
+	      $scope.limit = $scope.skip + $scope.amt;
+	    };
 
-    $scope.dateToEpoch = function(datestring) {
-      var deadline = new Date(datestring);
-      return deadline.getTime();
-    };
-  });
+	    $scope.dateToEpoch = function(datestring) {
+	      var deadline = new Date(datestring);
+	      return deadline.getTime();
+	    };
+	  });
+	};
+	getErrands();
+	//install socket.io here when you get a new bid message recieve it and call get errands
+	var socket = io('http://localhost:4000');
+	socket.on('connect',function() {
+	console.log('Client has connected to the server!');
+});
+  	socket.on('New Bid', function() {
+  		console.log("bid");
+  		getErrands();
+  	});
 }]);
 
 errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
