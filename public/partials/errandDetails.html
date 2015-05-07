@@ -5,7 +5,8 @@
   	</div>
 
   	<div class="small-8 columns errandsDiv small-centered">
-  		<h3 class="subheader">{{errand.createdName}}</h3>
+  		<h3>{{errand.createdName}}</h3>
+  		<h5 class="subheader"> Errand Name: {{errand.name}}</h5>
   		 <h5 class="subheader">Errand Location: {{errand.errandLocation}}</h5>
 
   		<p>{{errand.description}}</p>
@@ -18,8 +19,8 @@
         <form method="POST" data-abide>
 			<div class ="row">
 				<div class="large-12 large-centered columns">
-					<label> Bid Amount <small id="smal"> Required</small>
-					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" required/>
+					<label ng-show = "{{userLoggedIn}}"> Bid Amount <small id="smal"> Required</small>
+					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" ng-show = "{{userLoggedIn}}" required/>
 				</div>
 				<div class="large-12 large-centered text-center columns">
 					<input class="button tiny" type="submit" name="submit" value="Submit" ng-show = "{{userLoggedIn}}" ng-click="newBid()">
