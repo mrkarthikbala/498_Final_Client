@@ -249,6 +249,7 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
   console.log($scope.currDate);
   $scope.email = $window.sessionStorage.userEmail;
 
+
   $scope.refreshErrands = function(){
             Users.getUser($scope.UserId).success(function(response){
               $scope.user = response.data;
@@ -269,6 +270,7 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
                 console.log($scope.thePendingUsersErrands);
                 console.log($scope.theCompletedUsersErrands);
                })
+
             });
 };
 
