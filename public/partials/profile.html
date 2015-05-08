@@ -18,14 +18,13 @@
 
         <p>{{items.description}}</p>
         
-        <div class="small-6 left columns text-center buttonD">
-          <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
-        </div>
+        <div class="row">
+          <div class="small-6 columns small-left medium-centered buttonD">
+            <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete Errand" ng-if = "user.email == email">
 
-        <div class="small-6 right columns text-center buttonD">
-          <a class="submission button tiny" href="#/updateErrand/{{items._id}}">Update Errand</a> 
-        </div>    
-        
+            <a class="submission button tiny" ng-if = "user.email == email" href="#/updateErrand/{{items._id}}">Update Errand</a> 
+          </div>    
+        </div>
         </td>
         
         </tr>
@@ -44,12 +43,15 @@
         		</tbody>
               <tr ng-repeat="items in theCompletedUsersErrands">
             		<td>
-            	   <h4>{{items.name}}</h4><br/>
+            	   <h4 class="subheader">{{items.name}}</h4>
+                <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
     					   <p>{{items.description}}</p>
+
                  
                  <div class="small-6 columns text-center buttonD">
                    <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete" ng-if = "user.email == email">
                  </div>
+
     				  </td>
           </tr>
     			</tbody>
