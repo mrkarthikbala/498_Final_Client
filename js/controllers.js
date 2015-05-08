@@ -133,8 +133,8 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.theCompletedUsersErrands = [];
   $scope.showAddButton  = $window.sessionStorage.loggedIn;
   console.log($scope.showAddButton);
-  var getErrands = function(){
-	  Errands.getErrands("").success(function(response){
+  $scope.getErrands = function(){
+	  Errands.getErrands("?sort={\"name\":1}").success(function(response){
 	    $scope.userEmail = $window.sessionStorage.userEmail;
 	    $scope.currDate = new Date();
 	    for (var j=0; j < response.data.length; j++) {
@@ -186,15 +186,20 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
 	    };
 	  });
 	};
-	getErrands();
+	$scope.getErrands();
 	//install socket.io here when you get a new bid message recieve it and call get errands
 	var socket = io('http://localhost:4000');
 	socket.on('connect',function() {
 	console.log('Client has connected to the server!');
 });
-  	socket.on('New Bid', function() {
+  	socket.on('New Bid', function(data) {
   		console.log("bid");
-  		getErrands();
+  		$scope.errands=[];
+  		$scope.thePendingUsersErrands = [];
+  		setTimeout(function(){
+  			$scope.getErrands();   		
+	},2000);
+  		
   	});
 }]);
 
