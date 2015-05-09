@@ -9,24 +9,39 @@
   		<h5 class="subheader"> Errand Name: {{errand.name}}</h5>
   		 <h5 class="subheader">Errand Location: {{errand.errandLocation}}</h5>
 
-  		<p>{{errand.description}}</p>
+  		<p>Description: {{errand.description}}</p><br/>
   		<h6 id="deadline"> Deadline: {{errand.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
 	</div>
 
-	<div class="small-8 columns bidDiv small-centered">
+	<div class="small-8 columns bidDiv small-centered" ng-show= "showBidding">
         <h6>Best Bid: {{bestBid.bidAmount| currency}}</h6>
         <h6>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></h6>
         <form method="POST" data-abide>
 			<div class ="row">
-				<div class="large-12 large-centered columns">
+				<div class="large-12 large-centered columns" ng-show="showBidding">
 					<label ng-show = "{{userLoggedIn}}"> Bid Amount <small id="smal"> Required</small>
 					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" ng-show = "{{userLoggedIn}}" required/>
+					
+
 				</div>
-				<div class="large-12 large-centered text-center columns">
-					<input class="button tiny" type="submit" name="submit" value="Submit" ng-show = "{{userLoggedIn}}" ng-click="newBid()">
+				<div  class="large-12 large-centered text-center columns" ng-show="showBidding">
+					<input class="button tiny" type="submit" name="submit" value="Submit"  ng-click="newBid()"  ng-show = "{{userLoggedIn}}">
+					<!-- {{showBidding}} -->
+					<!-- {{hello}} -->
 				</div>
+
+				
+
 			</div>
 		</form>
 	</div>
 
+	<div class="small-8 columns errandsDiv small-centered" ng-hide="showBidding">
+  		<h3>Task Completed</h3>
+  		<h5 class="subheader"> Winner: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a> </h5>
+  		<h6>Winning Bid: {{bestBid.bidAmount| currency}}</h6>
+  		 
+	</div>
+
 </div>
+<!-- {{userLoggedIn}} &&  -->

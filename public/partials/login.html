@@ -9,9 +9,6 @@
         </div>
 
       <div class="row">
-        <table>
-          <tbody>
-          	<tr>
           		<form method="POST" data-abide>
 
             		<div class ="row login-div">
@@ -21,17 +18,20 @@
                 	</div>
           				<div class="small-6 small-centered columns">
             			 		<label>Password<small id="smal"> Required</small>
-              		  		<input name ="Password" ng-model="password" type="text" placeholder="llamas" required/>
+              		  		<input name ="Password" ng-model="password" type="password" placeholder="llamas" required/>
             		  		</div>
           				<div class="small-6 small-centered text-center columns">
           						<input class=" submission button expand radius" type="submit" name="submit" value="Submit" ng-click="loginUser()">
           				</div>
           			</div>  	  		
         	  	</form>
+      </div>
 
-            <tr>	    
-           </tbody>
-        </table>
+      <div class="row" ng-show="showMessage">
+          <div class="small-6 small-centered columns text-center">
+              <h5>{{message}}</h5>
+          </div>
+
       </div>
       
     </div>

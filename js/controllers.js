@@ -62,9 +62,12 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
   //   $scope.displayText = "URL set";
 
   // };
-  
+  $scope.message = "Email and Password Required";
+  $scope.showMessage = false;
+
   $scope.loginUser = function(){
     
+
    
 
     if($scope.password != null && $scope.email!=null) {
@@ -87,15 +90,23 @@ errandControllers.controller('loginController', ['$scope' ,'Users', '$window' , 
         location.reload(); 
       }).error(function(response){
         console.log(response.message);
+        $scope.message = response.message;
+        $scope.showMessage = true;
       });
 
 
+    }else{
+
+      $scope.message = "Email and Password Required";
+      $scope.showMessage = true;
     }
   };
 
 }]);
 
 errandControllers.controller('signupController', ['$scope', 'Users', '$window', function($scope, Users, $window) {
+$scope.message = "Email and Password Required";
+$scope.showMessage = false;
 
 $scope.addUsers = function(){
       
@@ -116,11 +127,17 @@ $scope.addUsers = function(){
             $scope.message = response.message;
             $scope.messageToSend = true;
             $scope.respClass = "success";
+            window.location.href = "/#/login/";
+
         }).error(function(error){
             $scope.message = error.message;
-            $scope.messageToSend = true;
+            $scope.showMessage = true;  
             $scope.respClass = "alert";
           });
+      }else{
+
+        $scope.message = "Please fill in all required information.";
+        $scope.showMessage = true;     
       }
 }}]);
 
@@ -133,6 +150,10 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.theCompletedUsersErrands = [];
   $scope.showAddButton  = $window.sessionStorage.loggedIn;
   console.log($scope.showAddButton);
+
+  $scope.$watch('inputValue', function(newValue, oldValue) {
+    $scope.skip = 0;
+});
   $scope.getErrands = function(){
 	  Errands.getErrands("?sort={\"name\":1}").success(function(response){
 	    $scope.userEmail = $window.sessionStorage.userEmail;
@@ -203,12 +224,31 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   	});
 }]);
 
-errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http, Errands, $window) {
+errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' ,'$interval', function($scope, $routeParams, $http, Errands, $window, $interval) {
   
   $scope.ErrandId = $routeParams.errandID;
   Errands.getErrand($scope.ErrandId).success(function(response){
     $scope.errand = response.data;
+ 
+    //checking if deadline passed while on page
+    $scope.checkDeadline = function(){
+      var currDate = new Date();
+      if($scope.deadline < currDate ){
+        location.reload();
+      }
+      console.log($scope.showBidding);
+    };
 
+    //code to intially check if deadline passed
+    $scope.deadline = new Date($scope.errand.deadline);
+    $scope.showBidding= true;
+    var currDate = new Date();
+    console.log($scope.deadline < currDate);
+    if($scope.deadline < currDate ){   
+          $scope.showBidding = false;           
+    }else{
+      $interval($scope.checkDeadline, 500);
+    }
 
     $scope.getBest = function(errand) {
         //MAKE SURE THESE ARE SET CORRECTLY
@@ -253,6 +293,10 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
   }
     $scope.userLoggedIn = $window.sessionStorage.loggedIn;
 
+     
+     // console.log($scope.showBidding);
+    
+
 
 }]);
 
@@ -282,6 +326,26 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
                   else {
                     $scope.theCompletedUsersErrands.push(response.data[j]);
                   }  
+                }
+                 $scope.getBest = function(errand) {
+                    //MAKE SURE THESE ARE SET CORRECTLY
+                    $scope.bestBidAmount = 1000000000000000;
+                    $scope.bestBid;
+                    for(var j=0; j < errand.bids.length; j++) {
+                      if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
+                        $scope.bestBidAmount = errand.bids[j].bidAmount;
+                        $scope.bestBid = errand.bids[j];
+                      }
+                    }
+                    return $scope.bestBid;
+                    //return the actual bids not the amount
+                };
+                for( var i=0; i<$scope.theCompletedUsersErrands.length; i++){
+                    $scope.theCompletedUsersErrands[i]['bestBid'] = $scope.getBest($scope.theCompletedUsersErrands[i]);
+                }
+
+                for( var i=0; i<$scope.thePendingUsersErrands.length; i++){
+                    $scope.thePendingUsersErrands[i]['bestBid'] = $scope.getBest($scope.thePendingUsersErrands[i]);
                 }
                 console.log($scope.thePendingUsersErrands);
                 console.log($scope.theCompletedUsersErrands);
