@@ -209,7 +209,8 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
 	};
 	$scope.getErrands();
 	//install socket.io here when you get a new bid message recieve it and call get errands
-	var socket = io('http://localhost:4000');
+	var socket = io('http://104.131.170.102:4000');
+  //var socket = io('http://localhost:4000');
 	socket.on('connect',function() {
 	console.log('Client has connected to the server!');
 });
