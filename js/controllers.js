@@ -228,52 +228,59 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
 errandControllers.controller('errandDetailController', ['$scope', '$routeParams', '$http', 'Errands', '$window' ,'$interval', function($scope, $routeParams, $http, Errands, $window, $interval) {
   
   $scope.ErrandId = $routeParams.errandID;
-  Errands.getErrand($scope.ErrandId).success(function(response){
-    $scope.errand = response.data;
- 
-    //checking if deadline passed while on page
-    $scope.checkDeadline = function(){
-      var currDate = new Date();
-      if($scope.deadline < currDate ){
-        location.reload();
-      }
-      console.log($scope.showBidding);
-    };
+  $scope.message = "Email and Password Required";
+  $scope.showMessage = false;
 
-    //code to intially check if deadline passed
-    $scope.deadline = new Date($scope.errand.deadline);
-    $scope.showBidding= true;
-    var currDate = new Date();
-    console.log($scope.deadline < currDate);
-    if($scope.deadline < currDate ){   
-          $scope.showBidding = false;           
-    }else{
-      $interval($scope.checkDeadline, 500);
-    }
+  $scope.getEverything=function(){
+          Errands.getErrand($scope.ErrandId).success(function(response){
+            $scope.errand = response.data;
+         
+            //checking if deadline passed while on page
+            $scope.checkDeadline = function(){
+              var currDate = new Date();
+              if($scope.deadline < currDate ){
+                location.reload();
+              }
+              console.log($scope.showBidding);
+            };
 
-    $scope.getBest = function(errand) {
-        //MAKE SURE THESE ARE SET CORRECTLY
-        $scope.bestBidAmount = 1000000000000000;
-        $scope.bestBid;
-        for(var j=0; j < errand.bids.length; j++) {
-          if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
-            $scope.bestBidAmount = errand.bids[j].bidAmount;
-            $scope.bestBid = errand.bids[j];
-          }
-        }
-        return $scope.bestBid;
-        //return the actual bids not the amount
-    };
+            //code to intially check if deadline passed
+            $scope.deadline = new Date($scope.errand.deadline);
+            $scope.showBidding= true;
+            var currDate = new Date();
+            console.log($scope.deadline < currDate);
+            if($scope.deadline < currDate ){   
+                  $scope.showBidding = false;           
+            }else{
+              $interval($scope.checkDeadline, 500);
+            }
 
-    $scope.bestBid = $scope.getBest($scope.errand);
-    
-    $scope.dateToEpoch = function(datestring) {
-      var deadline = new Date(datestring);
-      return deadline.getTime();
-    };
-    // $scope.epoch = $scope.dateToEpoch($scope.errand.deadline);
-    // console.log(typeof($scope.epoch));
-  });
+            $scope.getBest = function(errand) {
+                //MAKE SURE THESE ARE SET CORRECTLY
+                $scope.bestBidAmount = 1000000000000000;
+                $scope.bestBid;
+                for(var j=0; j < errand.bids.length; j++) {
+                  if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
+                    $scope.bestBidAmount = errand.bids[j].bidAmount;
+                    $scope.bestBid = errand.bids[j];
+                  }
+                }
+                return $scope.bestBid;
+                //return the actual bids not the amount
+            };
+
+            $scope.bestBid = $scope.getBest($scope.errand);
+            
+            $scope.dateToEpoch = function(datestring) {
+              var deadline = new Date(datestring);
+              return deadline.getTime();
+            };
+            // $scope.epoch = $scope.dateToEpoch($scope.errand.deadline);
+            // console.log(typeof($scope.epoch));
+          });
+  };
+
+  $scope.getEverything();
 
   $scope.newBid = function(){
     if($scope.bidAmount < $scope.bestBid.bidAmount){
@@ -288,13 +295,32 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
           location.reload();
         }).error(function(response){
           console.log(response.message);
+          $scope.message = response.message;
+         $scope.showMessage = true;
         });
+    }else{
+        $scope.message = "Bid must be lower than current lowest bid.";
+        $scope.showMessage = true;
+
     }
 
   }
     $scope.userLoggedIn = $window.sessionStorage.loggedIn;
 
-     
+    var socket = io('http://104.131.170.102:4000');
+  //var socket = io('http://localhost:4000');
+  socket.on('connect',function() {
+  console.log('Client has connected to the server!');
+});
+    socket.on('New Bid', function(data) {
+      console.log("bid");
+      $scope.errands=[];
+      $scope.thePendingUsersErrands = [];
+      setTimeout(function(){
+        $scope.getEverything();      
+  },2000);
+      
+    });
      // console.log($scope.showBidding);
     
 
