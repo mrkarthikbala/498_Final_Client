@@ -67,10 +67,12 @@ a {
 #rowLink {
 	font-size: 16px;
 	font-weight: 600;
+  color: white;
 }
 
 #rowLink a {
 	text-decoration: none;
+
 }
 
 #picture {
@@ -87,19 +89,23 @@ a {
 #dynamicTextBox{
 
   position: absolute;
-  top:50px;
-  left: 50px;
+  // top:50px;
+  // left: 50px;
+   background-color: rgba(0, 0, 0, 0.5);
 
 }
+#dynamicText{
 
-#arrows {
-	position: absolute;
-	margin-left: 40%;
-	margin-top: 20%;
-	font-size: 30px;
-	opacity: .95;
-
+  color: white;
 }
+// #arrows {
+// 	position: absolute;
+// 	margin-left: 40%;
+// 	margin-top: 20%;
+// 	font-size: 30px;
+// 	opacity: .95;
+
+// }
 
 .buttonD {
 	margin-top: 7px;

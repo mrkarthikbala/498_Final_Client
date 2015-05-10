@@ -1,15 +1,21 @@
 <div ng-controller='settingsController'>		
   <div class="row">
-    <div id="picture" class= "small-12 large-12 large-centered columns">
+    <div id="picture" class= "small-12 large-12 small-centered columns">
         <!-- <a href="#missionSection" id="arrows" class= "button large alert"> Learn More</a> -->
         <img id ="mainPicture" src="../pictures/Collage.jpg"/>
-  
-     <div id="dynamicTextBox" class=" small-12 small-centered columns text-center ">
-         <!--  <h2 id="dynamicText" class="text-center"></h2> -->
+      
+     <div id="dynamicTextBox" class=" small-12 columns ssmall-centered text-center ">
+        <h2 id="dynamicText" class="text-center"> We all live busy lives. Ask for help? </h2>
+         
+        <div class="row">
+          <div class="small-5 columns small-centered">
+            <input type="text" ng-model="searchText" placeholder="Walk my dog">
+          </div>
 
+        </div>
           <ul id="buttonBox" class="button-group">
-                <li><a href="#" data-reveal-id="AboutUsInfo" class="button success" >About</a></li>
-                <li><a href="#Research" class="button success">Learn More</a></li>
+                <li><a href="#/errandsSearch/{{searchText}}" data-reveal-id="AboutUsInfo" class="button submission" >Search for errands</a></li>
+                <li><a href="#LearnMore" class="button submission">Learn More</a></li>
           </ul>
     <div>
 
@@ -17,7 +23,7 @@
     </div>
   </div>
   
-  <div class = "row stripe_sky padding">
+  <div class = "row stripe_sky padding" id="LearnMore">
     <a name = "missionSection"></a>
     <div class="large-7 large-centered column ">
       <h3 class="subheader text-center">History</h3>

@@ -38,20 +38,20 @@
     <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: [small,medium,large]">
       <ul class="title-area">
         <li class="name">
-            <img id="ANGTFT" align="center" src = "./pictures/ANGTFTLogo.png"/>
+           <a href="#/settings"> <img id="ANGTFT" align="center" src = "./pictures/ANGTFTLogo.png"/></a>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#/settings"><span>Menu</span></a></li>
       </ul>
 
         <section class="top-bar-section">
           <ul class="right">
-            <li><a href="#/settings">About Us</a></li>
+            <li><a href="#/settings">Home</a></li>
             <li class="divider"></li>
             <li><a ng-hide = "{{userLoggedIn}}" href="#/login">Login</a></li>
             <li class="divider"></li>
             <li><a ng-hide = "{{userLoggedIn}}" href="#/signup">Sign Up</a></li>
             <li class="divider"></li>
-            <li><a href="#/errands">View Errands</a></li>
+            <li><a href="#/errandsSearch/noSearch">View Errands</a></li>
             <li class="divider"></li>
             <li><a ng-show = "{{userLoggedIn}}" ng-href="#/profile/{{_id}}">Go To Profile</a></li>
             <li class="divider"></li>

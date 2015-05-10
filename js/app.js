@@ -14,7 +14,7 @@ errandApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/signup.html',
     controller: 'signupController'
   }).
-  when('/errands', {
+  when('/errandsSearch/:text', {
     templateUrl: 'partials/errands.html',
     controller: 'errandsController'
   }).

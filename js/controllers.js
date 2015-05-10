@@ -12,7 +12,7 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
   var windowheight = $(window).height()-80;
 
   $('#picture').css('height', ""+ (windowheight)+"px" );
-  $('#dynamicTextBox').css('top', ""+ (windowheight/2)+"px" );
+  $('#dynamicTextBox').css('top', ""+ (windowheight/2)-50+"px" );
   $('a[href*=#]').click(function(event){
     $('html, body').animate({
       scrollTop: $( $.attr(this, 'href') ).offset().top -50
@@ -154,7 +154,7 @@ $scope.addUsers = function(){
       }
 }}]);
 
-errandControllers.controller('errandsController', ['$scope', '$http', 'Errands', '$window' , function($scope, $http,  Errands, $window) {
+errandControllers.controller('errandsController', ['$scope', '$routeParams', '$http', 'Errands', '$window' , function($scope, $routeParams, $http,  Errands, $window) {
   // console.log("loggedIn: "+ $window.sessionStorage.loggedIn);
   $scope.amt = 10;
   $scope.skip = 0;
@@ -163,6 +163,11 @@ errandControllers.controller('errandsController', ['$scope', '$http', 'Errands',
   $scope.theCompletedUsersErrands = [];
   $scope.showAddButton  = $window.sessionStorage.loggedIn;
   console.log($scope.showAddButton);
+  $scope.searchText = $routeParams.text;
+  if($scope.searchText == "noSearch"){
+    $scope.searchText="";
+  }
+  $scope.inputValue = $scope.searchText;
 
   $scope.$watch('inputValue', function(newValue, oldValue) {
     $scope.skip = 0;
@@ -447,7 +452,7 @@ errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$win
    
     Errands.postErrand(errand).success(function(data, status, headers, config) {
       console.log("added Errand");
-      window.location.href = "/#/errands/";
+      window.location.href = "#/errandsSearch/noSearch";
     });
   };
 
@@ -521,7 +526,7 @@ errandControllers.controller('updateErrandController', ['$scope' , '$routeParams
   $scope.editErrand = function(errand) {
    
     Errands.updateErrand(errand).success(function(response) {
-      window.location.href = "/#/errands/";
+      window.location.href = "#/errandsSearch/noSearch";
     }).error(function(response){
       console.log(response.message);
     });

@@ -17,8 +17,8 @@
         <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
 
         <p>Description: {{items.description}}</p>
-        <h5 class="subheader"> Current Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a> </h5>
-        <h5 class="subheader"> Current Lowest Bid Amount: {{bestBid.bidAmount | currency}}</h5>
+        <h5 class="subheader"> Current Best Bidder: <a href="#/profile/{{items.bestBid.bidderID}}">{{items.bestBid.bidderName}}</a> </h5>
+        <h5 class="subheader"> Current Lowest Bid Amount: {{items.bestBid.bidAmount | currency}}</h5>
         <div class="row">
           <div class="small-6 columns small-left medium-centered buttonD">
             <input class="submission button tiny" type="submit" name="delete" ng-click="deleteErrand(items)" value="Delete Errand" ng-if = "user.email == email">
@@ -47,7 +47,7 @@
                 <h4 class="subheader"><a href="#/errands/{{items._id}}">{{items.name}}</a></h4>
                 <h6> Deadline: {{items.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
     					  <p>Desctiption: {{items.description}}</p>
-                <h5 class="subheader"> Winner: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a> </h5>
+                <h5 class="subheader"> Winner: <a href="#/profile/{items.{bestBid.bidderID}}">{{items.bestBid.bidderName}}</a> </h5>
 
                  
                  <div class="small-6 columns text-center buttonD">
