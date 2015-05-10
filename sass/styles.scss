@@ -19,6 +19,32 @@ a {
 	margin-bottom: 5%;
 }
 
+.stripe_deep {
+  background-color: $deep-blue;
+  color: $red;
+  font-size:medium;
+}
+
+.stripe_sky {
+  background-color: $sky-blue;
+  color: $red;
+  font-size:large;
+}
+
+.bigtext {
+  font-size:medium;
+}
+
+.myrow{
+  width: 100%;
+  max-width: 100%; 
+}
+
+.padding {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
 #deadline {
 	font-size: 15px;
 }
