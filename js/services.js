@@ -11,8 +11,8 @@ angular.module('errandServices', [])
         }
     })
     .factory('Users', function($http, $window) {      
-        //var baseUrl = "http://104.131.170.102:4000";
-        var baseUrl = "http://localhost:4000";
+        var baseUrl = "http://104.131.170.102:4000";
+       // var baseUrl = "http://localhost:4000";
         var Users = {};
         Users.getUsers = function(paramString) {
                 return $http.get(baseUrl+'/api/users' + paramString);
@@ -43,8 +43,8 @@ angular.module('errandServices', [])
         
     })
     .factory('Errands', function($http, $window) {      
-        //var baseUrl = "http://104.131.170.102:4000";
-        var baseUrl = "http://localhost:4000";
+        var baseUrl = "http://104.131.170.102:4000";
+       // var baseUrl = "http://localhost:4000";
         var Errands = {};
         Errands.getErrands = function(paramString){
             // console.log(paramString);
