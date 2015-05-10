@@ -1,5 +1,7 @@
 <div class="row" ng-controller='errandDetailController'>
-  	<div class="small-8 columns text-center small-centered">
+  	
+
+    <div class="small-8 columns text-center small-centered">
   		<h1> {{errand.name}} </h1>
   		<hr>
   	</div>
@@ -11,38 +13,36 @@
 
   		<p>Description: {{errand.description}}</p><br/>
   		<h6 id="deadline"> Deadline: {{errand.deadline | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
-	</div>
+	  </div>
 
 	<div class="small-8 columns bidDiv small-centered" ng-show= "showBidding">
         <h6>Best Bid: {{bestBid.bidAmount| currency}}</h6>
         <h6>Best Bidder: <a href="#/profile/{{bestBid.bidderID}}">{{bestBid.bidderName}}</a></h6>
         <form method="POST" data-abide>
 			<div class ="row">
-				<div class="large-12 large-centered columns" ng-show="showBidding">
-					<label ng-show = "{{userLoggedIn}}"> Bid Amount <small id="smal"> Required</small>
-					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" ng-show = "{{userLoggedIn}}" required/>
-					
 
-				</div>
-				<div  class="large-12 large-centered text-center columns" ng-show="showBidding">
-					<input class="button tiny" type="submit" name="submit" value="Submit"  ng-click="newBid()"  ng-show = "{{userLoggedIn}}">
-					<!-- {{showBidding}} -->
-					<!-- {{hello}} -->
-				</div>
+  				<div class="large-12 large-centered columns" ng-show="showBidding">
+  					<label ng-show = "{{userLoggedIn}}"> Bid Amount <small id="smal"> Required</small>
+  					<input name = "Bid" placeholder= "5.39" type="text" ng-model="bidAmount" ng-show = "{{userLoggedIn}}" required/>
+  				</div>
 
-				<div class="row" ng-show="showMessage">
-          			<div class="small-6 small-centered columns text-center">
-              		<h5>{{message}}</h5>
-          			</div>
-    			</div>
-
-			</div>
-		</form>
-
-
-	</div>
+  				<div  class="large-12 large-centered text-center columns" ng-show="showBidding">
+  					<input class="button tiny" type="submit" name="submit" value="Submit"  ng-click="newBid()"  ng-show = "{{userLoggedIn}}">
+  					<!-- {{showBidding}} -->
+  					<!-- {{hello}} -->
+  				</div>
 
 	
+      </div>
+		</form>
+      <div class="row" ng-show="showMessage">
+                <div class="small-6 small-centered columns text-center">
+                  <h5>{{message}}</h5>
+                </div>
+      </div>
+	</div>
+
+
 
 	<div class="small-8 columns errandsDiv small-centered" ng-hide="showBidding">
   		<h3>Task Completed</h3>

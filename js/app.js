@@ -26,6 +26,10 @@ errandApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/profile.html',
     controller: 'profileController'
   }).
+   when('/profileBids/:usersId', {
+    templateUrl: 'partials/profileBids.html',
+    controller: 'profileBidsController'
+  }).
   when('/addErrand', {
     templateUrl: 'partials/addErrand.html',
     controller: 'addErrandController'

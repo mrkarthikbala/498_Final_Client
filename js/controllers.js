@@ -207,6 +207,11 @@ errandControllers.controller('errandsController', ['$scope', '$routeParams', '$h
 	      $scope.errands[i]['bestBid']= $scope.getBest($scope.errands[i]);
 	    }
 
+     
+
+
+      
+
 	    $scope.nextPage = function(){
 	      $scope.skip += $scope.amt;
 	      $scope.skip = Math.min($scope.errands.length - $scope.amt, $scope.skip); 
@@ -248,6 +253,9 @@ errandControllers.controller('errandDetailController', ['$scope', '$routeParams'
   $scope.ErrandId = $routeParams.errandID;
   $scope.message = "Email and Password Required";
   $scope.showMessage = false;
+  $scope.user={}
+  $scope.user.email = $window.sessionStorage.userEmail;
+
 
   $scope.getEverything=function(){
           Errands.getErrand($scope.ErrandId).success(function(response){
@@ -394,6 +402,43 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
                 }
                 console.log($scope.thePendingUsersErrands);
                 console.log($scope.theCompletedUsersErrands);
+
+
+                  // Errands.getErrands("").success(function(response){
+                  //     console.log("got all errands");
+                  //     $scope.allErrands = response.data;
+                  //     $scope.allBiddedErrands = [];
+                  //     $scope.allPendingBids = [];
+                  //     $scope.allCompletedBids=[];
+                  //     $scope.currDate = new Date();
+                  //     for(var i=0; i<$scope.allErrands.length; i++){
+
+                  //         for(var j=0; j<$scope.allErrands[i].bids.length; j++){
+
+                  //             if($scope.allErrands[i].bids[j].bidderID == $scope.UserId){
+                  //               $scope.allBiddedErrands.push($scope.allErrands[i]);
+                  //               $scope.errandDate = new Date($scope.allErrands[i].deadline);
+                                
+                  //               if( $scope.errandDate <= $scope.currDate){
+                  //                   $scope.allCompletedBids.push($scope.allErrands[i]);
+                  //               }else{
+                  //                   $scope.allPendingBids.push($scope.allErrands[i]);
+                  //               }
+                  //               console.log("completed");
+                  //               console.log($scope.allCompletedBids);
+                  //               console.log("pending");
+                  //               console.log($scope.allPendingBids);
+                  //             }
+
+                  //         }
+                  //     }
+
+                  //   });
+               
+
+
+
+
                })
 
             });
@@ -407,6 +452,70 @@ errandControllers.controller('profileController', ['$scope', '$routeParams', '$h
       location.reload(); 
     })
   }
+}]);
+
+errandControllers.controller('profileBidsController', ['$scope', '$routeParams', '$http', 'Users', 'Errands', '$window' , function($scope, $routeParams, $http,  Users, Errands, $window) {
+
+  $scope.UserId = $routeParams.usersId;
+  Users.getUser($scope.UserId).success(function(response){
+              $scope.user = response.data;
+                Errands.getErrands("").success(function(response){
+                      console.log("got all errands");
+                      $scope.allErrands = response.data;
+                      $scope.allBiddedErrands = [];
+                      $scope.allPendingBids = [];
+                      $scope.allCompletedBids=[];
+                      $scope.currDate = new Date();
+                      
+
+                      for(var i=0; i<$scope.allErrands.length; i++){
+
+                          for(var j=0; j<$scope.allErrands[i].bids.length; j++){
+
+                              if($scope.allErrands[i].bids[j].bidderID == $scope.UserId){
+                                $scope.allBiddedErrands.push($scope.allErrands[i]);
+                                $scope.errandDate = new Date($scope.allErrands[i].deadline);
+                                
+                                if( $scope.errandDate <= $scope.currDate){
+                                    $scope.allCompletedBids.push($scope.allErrands[i]);
+                                }else{
+                                    $scope.allPendingBids.push($scope.allErrands[i]);
+                                }
+                                break;
+                                console.log("completed");
+                                console.log($scope.allCompletedBids);
+                                console.log("pending");
+                                console.log($scope.allPendingBids);
+                              }
+
+                          }
+                      }
+
+
+                     $scope.getBest = function(errand) {
+                        //MAKE SURE THESE ARE SET CORRECTLY
+                        $scope.bestBidAmount = 1000000000000000;
+                        $scope.bestBid;
+                        for(var j=0; j < errand.bids.length; j++) {
+                          if(errand.bids[j].bidAmount < $scope.bestBidAmount) {
+                            $scope.bestBidAmount = errand.bids[j].bidAmount;
+                            $scope.bestBid = errand.bids[j];
+                          }
+                        }
+                        return $scope.bestBid;
+                        //return the actual bids not the amount
+                    };
+                    for( var i=0; i<$scope.allPendingBids.length; i++){
+                        $scope.allPendingBids[i]['bestBid'] = $scope.getBest($scope.allPendingBids[i]);
+                    }
+
+                    for( var i=0; i<$scope.allCompletedBids.length; i++){
+                        $scope.allCompletedBids[i]['bestBid'] = $scope.getBest($scope.allCompletedBids[i]);
+                    }
+
+                    });
+  });
+
 }]);
 
 errandControllers.controller('addErrandController', ['$scope' , 'Errands', '$window' ,  function($scope, Errands, $window) {

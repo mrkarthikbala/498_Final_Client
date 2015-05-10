@@ -33,7 +33,7 @@
              <th class="text-center hide-for-small-down"><a  id = "rowLink" href="" ng-click="predicate = 'description'; reverse=!reverse">Errand Description</a></th>
              <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'deadline'; reverse=!reverse">Expiration</a></th>
              <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidAmount'; reverse=!reverse">Current Bid</a></th>
-             <th class="text-center"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidderName'; reverse=!reverse">Current Bidder</a></th>
+             <th class="text-center hide-for-small-down"><a id = "rowLink" href="" ng-click="predicate = 'bestBid.bidderName'; reverse=!reverse">Current Bidder</a></th>
           </tr>
         </thead>
         <tbody>
@@ -51,7 +51,7 @@
               </timer>
             </td>
             <td>{{errand.bestBid.bidAmount | currency}}</td>
-            <td><a href="#/profile/{{errand.bestBid.bidderID}}">{{errand.bestBid.bidderName}}</td>
+            <td><a href="#/profile/{{errand.bestBid.bidderID}}" class="hide-for-small-down">{{errand.bestBid.bidderName}}</td>
           </tr>  
         </tbody>
       </table>
