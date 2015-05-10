@@ -74,14 +74,22 @@ a {
 }
 
 #picture {
-	background-image: url("../pictures/ANGTFT3.png");
     background-size: cover;
-    width: 100%;
-    height: 1100px;
-    background-attachment: fixed;
-    position: relative;
-    opacity: .8;
-    margin-top: 5px;
+    background-attachment: fixed; 
+}
+
+#mainPicture{
+
+  width: 100%;
+  height: 100%;
+
+}
+#dynamicTextBox{
+
+  position: absolute;
+  top:50px;
+  left: 50px;
+
 }
 
 #arrows {

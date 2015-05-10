@@ -9,10 +9,23 @@ errandControllers.controller('settingsController', ['$scope' , '$window' , funct
 
   };
 
+  var windowheight = $(window).height()-80;
+
+  $('#picture').css('height', ""+ (windowheight)+"px" );
+  $('#dynamicTextBox').css('top', ""+ (windowheight/2)+"px" );
   $('a[href*=#]').click(function(event){
     $('html, body').animate({
       scrollTop: $( $.attr(this, 'href') ).offset().top -50
   }, 600);
+
+ $(window).resize(function() {
+    var windowheight = $(window).height()-80;
+    $('#picture').css('height', ""+ (windowheight)+"px" );
+    console.log("hello");
+    // $("#arrows").css('top', ""+ (mainHeight/2)+"px" );    
+  });
+
+
   event.preventDefault();
 
   });
